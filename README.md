@@ -1,6 +1,6 @@
 # React - The Complete Guide (incl Hooks, React Router, Redux) 
 
-[Getting Started](/#getting-started)
+[Getting Started](#getting-started)
 
 ## Getting Started
 
