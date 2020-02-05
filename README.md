@@ -1,5 +1,7 @@
 # React - The Complete Guide (incl Hooks, React Router, Redux) 
 
+[Getting Started](/#getting-started)
+
 ## Getting Started
 
 ### Intro
@@ -57,7 +59,7 @@ ReactDOM.render(<ComponentFunctionName />,document.querySelector('#componentBloc
 
 Таким образом можно переиспользовать один и тот же компонент с разными параметрами.
 
-### Рендеринг одной переменной app
+#### Рендеринг одной переменной app
 
 Можно поместить все компоненты в одну переменную и отрендерить ее. Их надо обернуть в один эл-т, т.к. **JSX** принисает только один корневой элемент.
 
