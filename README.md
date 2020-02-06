@@ -1,6 +1,7 @@
 # React - The Complete Guide (incl Hooks, React Router, Redux) 
 
-[Getting Started](#getting-started)
+[1. Getting Started](#getting-started)
+[2. Getting Started](#javascript-es6)
 
 ## Getting Started
 
@@ -24,7 +25,6 @@ React - JS библиотека для постороения пользовте
 
 Для использования React нужно как минимум следующее:
 
-
  * React - содержит необходимую логику для создания компонентов
  * React DOM - рендерит компоненты в настоящий DOM
  * Babel - JS препроцессор для использования последних фич JS, в итоге делает код таким, чтобы он работал в любых браузерах, а писать его можно со всеми последними фичами.
@@ -35,7 +35,7 @@ React - JS библиотека для постороения пользовте
 Название - с большой буквы.
 Возвращаемый код можно писать в формате **JSX**.
 
-return () - в скобках многострочный код, туда можно вставить просто вставить рвзметку и Babel преобразует ее в правильный код.
+return () - в скобках многострочный код, туда можно просто вставить рвзметку и Babel преобразует ее в правильный код.
 
 ```javascript
 ReactDOM.render(<ComponentFunctionName />,document.querySelector('#componentBlockId'));
@@ -44,10 +44,9 @@ ReactDOM.render(<ComponentFunctionName />,document.querySelector('#componentBloc
 - рендерит компонент, принимает
 
  * компонент, как html-элемент ( в < />)
- * html-элемент, в который втавить
+ * html-элемент, в который вставить компонент
 
 В **JXS** лучше использовать className вместо class, т.к. class - зарезервированное слово (но у меня в кодепен и class сработал)
-
 
 #### Параметры
 
@@ -61,6 +60,148 @@ ReactDOM.render(<ComponentFunctionName />,document.querySelector('#componentBloc
 
 #### Рендеринг одной переменной app
 
-Можно поместить все компоненты в одну переменную и отрендерить ее. Их надо обернуть в один эл-т, т.к. **JSX** принисает только один корневой элемент.
+Можно поместить все компоненты в одну переменную и отрендерить ее. Их надо обернуть в один эл-т, т.к. **JSX** принимает только один корневой элемент.
+С таким подходом создают Single Page Application.
 
 
+#### Какие проблемы решает React
+
+ * трудности в управлении состоянием пользовательского интерфейса. При изменении html разметки надо менять js, т.к. элементы определяются querySelector. В приложениях, где надо быстро добавлять или удалять эл-ты код становится громоздким.
+
+ * позволяет сконцентрироваться на логике приложения и не беспокоиться о технической реализации многих вещей
+
+ * у React хорошая поддержка, код работает быстро и эффективно
+
+ * большое коммьюнити, легко найти решение проблемы, дополнительные пакеты
+
+
+#### Single Page Application
+
+
+**Single Page Applcation**
+
+ - самый популярный подход для приложений на реакт. Работает быстрее, т.к. не надо перезагружать всю страницу и ждать ответа от сервера.
+
+ * Получаем одну страницу с сервера. Страница состоит из реакт-компонентов. Сама страница - root-компонент, который тоже управляется реактом.
+
+ * Используется подход с единственным вызовом ReactDOM.render() для корневого эл-та.
+
+ * рекомендуется использовать библиотеку react-router
+
+
+ **Multi Page Application**
+
+ * много страниц, по одной на каждый адрес. Реакт используется для отдельных виджетов, которые не знают о существовании друг друга.
+
+ * ReactDOM.render() вызывается для каждого виджета.
+
+
+## JavaScript ES6
+
+JSBean - удобная песочница. Можно выполнять JS и видеть вывод в консоль.
+
+### Let and Const
+
+Используйте let для переменных и const для констант.
+
+### Arrow Functions
+
+
+```javascript
+const myFunc=()=> {
+
+}
+````
+
+С одним аргументом:
+
+```javascript
+const myFunc= name => {
+
+}
+````
+
+Только с оператором return в теле:
+
+```javascript
+const myFunc= number => number*2;
+````
+
+
+### Экспорт и Импорт (Модули)
+
+Позволяет разбить код на файлы. Импортировать в файл другие файлы, чтобы js код в файле знал какие у него зависимости.
+
+
+Default export: 
+```javascript
+const person = {
+	name: 'Max'
+}
+
+export default person
+````
+
+Not default export: 
+
+```javascript
+const clean = () => { ... };
+
+const baseData = 10;
+
+export clean;
+export baseData;
+````
+
+Default import:
+
+```javascript
+import prs form  person.js;
+````
+
+* можно называть как угодно, всегда импортируется default
+
+
+Not default import (named import)
+
+```javascript
+import {clean as MyClean} form  utility.js;
+import {baseData as MyData} form  utility.js;
+
+import * as bundled from utility.js;
+````
+* надо указывать точные имена в {} и можно указать свое имя после **as** 
+* bundled - объект, содержащий все импортированные переменные как св-ва
+
+### Classes
+
+```javascript
+class Human {
+  constructor() {
+    this.gender = 'female';
+  }
+  
+  printGender() {
+    console.log(this.gender);
+  }
+}
+
+class Person extends Human {
+  constructor() {
+    super();
+    this.name = 'Maya';
+    this.gender = 'male';
+  }
+  
+  printMyName() {
+    console.log(this.name);
+  }
+}
+
+const person = new Person();
+
+person.printMyName();
+person.printGender();
+```
+
+super() - вызывает constructor() родительского класса
