@@ -315,7 +315,7 @@ const double = numbers.map((i) => i*2);
 
 console.log(numbers); // [1, 2, 3]
 console.log(double); // [2, 4, 6]
-
+```
 
 ## The Basics
 
