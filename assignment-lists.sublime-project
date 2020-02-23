@@ -1,0 +1,11 @@
+{
+	"folders":
+	[
+		{
+			"path": "assignment-lists"
+		}
+	],
+	"syntax_override": {
+	"\\.js$": ["Babel", "JavaScript (Babel)"]
+	}
+}
