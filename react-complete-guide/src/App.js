@@ -1,21 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person';
 
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
 
 class App extends Component {
   state = {
@@ -129,9 +115,9 @@ class App extends Component {
           </button>
           <button onClick={this.switchNameHandler2.bind(this)}>Switch Name 2</button>
           <div>
-            <StyledButton alt = {this.state.showPersons} onClick={this.togglePersonsHandler}>
+            <button alt = {this.state.showPersons} onClick={this.togglePersonsHandler}>
                 Toggle Persons
-            </StyledButton>
+            </button>
           </div>
           {persons}
         </div>
