@@ -162,10 +162,21 @@
 			}
 		},
 		{
+			"contents": "# React - The Complete Guide (incl Hooks, React Router, Redux) \n\n* [1. Getting Started](#getting-started)\n* [2. JavaScript ES6](#javascript-es6)\n* [3. The Basics](#the-basics)\n* [4. Working with List and Conditionals](#working-with-list-and-conditionals)\n* [5. Styling React Components & Elements](#styling-react-components-&-elements)\n* [ Questions](#questions)\n\n\n## Getting Started\n\n### Intro\n\nReact - JS библиотека для построения пользовательских интерфейсов. Приложения на реакт запускаются в браузерах. Все действия происходят сразу после того, как они инициированы пользователем. Не надо ждать ответа от сервера.\n\nПользовательские интерфейсы на Реакт построены с помощью компонентов. Все что видит пользователь на странице можно разбить на компоненты. (Например, хедер, футер, контент, сайдбар)\n\nПочему компоненты это удобно?\n\n * Легче поддерживать код\n * Можно переиспользовать компоненты.\n\n Каждый компонент в итоге выдает какой-то настраиваемый элемент html-разметки.\n\n\n### First React Code\n\n#### Окружение\n\nДля использования React нужно как минимум следующее:\n\n * React - содержит необходимую логику для создания компонентов\n * React DOM - рендерит компоненты в настоящий DOM\n * Babel - JS препроцессор для использования последних фич JS, в итоге делает код таким, чтобы он работал в любых браузерах, а писать его можно со всеми последними фичами.\n\n#### Компонент\n\nКомпонент реакт - это ф-ция, возвращает код, который будете рендериться в DOM.\nНазвание - с большой буквы.\nВозвращаемый код можно писать в формате **JSX**.\n\nreturn () - в скобках многострочный код, туда можно просто вставить разметку и Babel преобразует ее в правильный код.\n\n```javascript\n  ReactDOM.render(<ComponentFunctionName />,document.querySelector('#componentBlockId'));\n```\n  рендерит компонент, принимает:\n\n * компонент, как html-элемент ( в < />)\n * html-элемент, в который вставить компонент\n\nВ **JXS** лучше использовать className вместо class, т.к. class - зарезервированное слово (но у меня в кодепен и class сработал)\n\n#### Параметры\n\nОдно из главных преимуществ компонентов, в том, что мы можем формировать их динамически.\n\nВ аргумент компонента передаются все атрибуты, которые задаются компоненту при рендеринге.\n\nАргументы передаются в **JSX** внутри **{}**.\n\nТаким образом можно переиспользовать один и тот же компонент с разными параметрами.\n\n#### Рендеринг одной переменной app\n\nМожно поместить все компоненты в одну переменную и отрендерить ее. Их надо обернуть в один эл-т, т.к. **JSX** принимает только один корневой элемент.\nС таким подходом создают Single Page Application.\n\n[codepen](https://codepen.io/mayasol/pen/OJVJJJX)\n\n\n#### Какие проблемы решает React\n\n * трудности в управлении состоянием пользовательского интерфейса. При изменении html разметки надо менять js, т.к. элементы определяются querySelector. В приложениях, где надо быстро добавлять или удалять эл-ты код становится громоздким.\n\n * позволяет сконцентрироваться на логике приложения и не беспокоиться о технической реализации многих вещей\n\n * у React хорошая поддержка, код работает быстро и эффективно\n\n * большое коммьюнити, легко найти решение проблемы, дополнительные пакеты\n\n\n#### Single Page Application\n\n\n**Single Page Applcation**\n\n - самый популярный подход для приложений на реакт. Работает быстрее, т.к. не надо перезагружать всю страницу и ждать ответа от сервера.\n\n * Получаем одну страницу с сервера. Страница состоит из реакт-компонентов. Сама страница - root-компонент, который тоже управляется реактом.\n\n * Используется подход с единственным вызовом ReactDOM.render() для корневого эл-та.\n\n * рекомендуется использовать библиотеку react-router\n\n\n **Multi Page Application**\n\n * много страниц, по одной на каждый адрес. Реакт используется для отдельных виджетов, которые не знают о существовании друг друга.\n\n * ReactDOM.render() вызывается для каждого виджета.\n\n\n## JavaScript ES6\n\nJSBean - удобная песочница. Можно выполнять JS и видеть вывод в консоль.\n\n### Let and Const\n\nИспользуйте let для переменных и const для констант.\n\n### Arrow Functions\n\n\n```javascript\nconst myFunc=()=> {\n...\n}\n````\n\nС одним аргументом:\n\n```javascript\nconst myFunc= name => {\n...\n}\n````\n\nТолько с оператором return в теле:\n\n```javascript\nconst myFunc= number => number*2;\n````\n\n\n### Экспорт и Импорт (Модули)\n\nПозволяет разбить код на файлы. Импортировать в файл другие файлы, чтобы js код в файле знал какие у него зависимости.\n\n\nDefault export: \n```javascript\nconst person = {\n\tname: 'Max'\n}\n\nexport default person\n````\n\nNot default export: \n\n```javascript\nconst clean = () => { ... };\n\nconst baseData = 10;\n\nexport clean;\nexport baseData;\n````\n\nDefault import:\n\n```javascript\nimport prs form person.js;\n````\n\n* можно называть как угодно, всегда импортируется default\n\n\nNot default import (named import)\n\n```javascript\nimport {clean as MyClean} form  utility.js;\nimport {baseData as MyData} form  utility.js;\n\nimport * as bundled from utility.js;\n````\n* надо указывать точные имена в {} и можно указать свое имя после **as** \n* bundled - объект, содержащий все импортированные переменные как св-ва\n\n### Classes\n\n```javascript\nclass Human {\n  constructor() {\n    this.gender = 'female';\n  }\n  \n  printGender() {\n    console.log(this.gender);\n  }\n}\n\nclass Person extends Human {\n  constructor() {\n    super();\n    this.name = 'Maya';\n    this.gender = 'male';\n  }\n  \n  printMyName() {\n    console.log(this.name);\n  }\n}\n\nconst person = new Person();\n\nperson.printMyName();\nperson.printGender();\n```\n\nsuper() - вызывает constructor() родительского класса\n\n### Classes Properties and Methods\n\nES7 синтакс задания св-в класса:\n\n```javascript\n\nclass MyClass {\n\n  myProperty = 'value';\n  \n  myMethod = () =>  {};\n}\n```\n\nПреимущества использования стрелочной ф-ции, как значения св-ва - нет проблем с this для методов. (? Они всегда вызываются в контектсе своего объекта ?)\n\n```javascript\nclass Human {\n    gender = 'female';\n  \n  printGender = () => {\n    console.log(this.gender);\n  }\n}\n\nclass Person extends Human {\n    name = 'Maya';\n    gender = 'male';\n  \n  printMyName = () => {\n    console.log(this.name);\n  }\n}\n\nconst person = new Person();\n\nperson.printMyName();\nperson.printGender();\n```\n\n[jsbin](https://jsbin.com/picilap/10/edit?js,output)\n\n\n### Spread and Rest Operators\n\n* Spread \n\n используется чтобы разделить элементы массива или св-ва объекта.\n\n```javascript\nconst newArray = [...oldArray,1,2];\nconst newObject = {...oldObject,newProp: 5}\n```\n\n если у oldObject есть св-во newProp оно будет переписано с новым значением\n\n* Rest\n\n```javascript\nfunction sortArgs(...args) {\n\treturn args.sort();\n}\n```\n\nэта ф-ция принимает любое количество аргументов в массив args\n\n\n### Destructuring\n\nИзвлечение эл-тов массива или св-в объекта и сохранение их в переменных.\n\n```javascript\n[a, , b] = ['Hello',',','World'];\nconsole.log(a); // 'Hello'\nconsole.log(b); // 'World'\n```\n\n\n```javascript\n[name] = {name: 'Maya',age: '37'];\nconsole.log(name); // 'Maya'\nconsole.log(age); // undefined\n```\n\n### Reference and Primitive Type Refresher\n\nПримитивы копируются при присваивании в переменную или при присванивании переменной значения другой переменной.\nОбъекты и массивы - ссылочные типы, при присваивании их переменной, копируется ссылка на массив или объект.\n\nПо настоящему скопировать эл-ты массива или св-ва объекта в другой массив или объект можно с помощью spread.\n\n```javascript\nconst person = {name: 'Maya',age: '37'];\n\nconst newPerson = {...person};\n```\n\n\n### Array Functions\n\nНе имеют собственного this, берут его из текущей области видимости.\n\n```javascriptame \nconst double = numbers.map((i) => i*2);\n\nconsole.log(numbers); // [1, 2, 3]\nconsole.log(double); // [2, 4, 6]\n```\n\n## The Basics\n\n### Build Workflow\n\n#### Зачем он нужен?\n\n* Оптимизировать код\n\n* Использовать все последние js фичи.\n\n* Повышает продуктивность разработчика. (CSS-autoprefixing, linting)\n\n\n#### Инструменты\n\n* Менеджер зависимостей (все доп. библиотеки (ReactDOM, например) и вспомогательные пакеты (Babel, например)). **npm** или **yarn**\n\n* Bundler (сборщик) - чтобы писать код разбитый на модули, а потом объединиить его в небольшое кол-во файлов, т.к. меньше кол-во запросов - оптимальнее для работы браузера. **Webpack**\n\n\n* Компилятор последних js фич. **Babel + Presets**\n\n* Development Server  - web server, запускаемый локально.\n\n\n\n#### Create React App\n\n[create-react-app github](https://github.com/facebook/create-react-app)\n\n```\nnpx create-react-app react-complete-guide --scripts-version 1.1.5\ncd react-complete-guide\nnpm start\n```\n\nIDE - автор использует Microsoft Studio Code\n\n\n**package.json** - зависимости проекта\n\nreact-scripts - содержит все инструменты, которые мы используем в build workflow\n\nСкрипты - \n * **start**  - запускает сервер для разработки и запускает собранный проект на нем, отслеживает изменения.\n * **build**  - собирает проект в отдельнцю папку, готовую к деплою.\n\n**public** - корневая папка сервера разработки\n\ncreate react app настроен для создания single page application, поэтому в нем может быть только один html файл\n\n**index.js** - рендерит компоноент App в html-элменент\n\nApp испортируется из файла App.js (.js опущен)\n\n\n**App.js** - содержит реакт-компонент\n\n### Настройки Sublime\n\nВ Sublime надо для правильной подсветки:\n\n* установить Babel Snippets череp Package Control\n* View > Syntax > Babel > Javascript\nЕсли нет Babel в меню, установить Babel\n\nЧтобы один раз для всего проекта указать какие настройки использовать, нужен пакет Project Specific Syntax Settings.\n\n* Создать проект Project - Add Folder To Project\n* Project - Save Project As..\n* Открыть js файл; \n  View - Syntax - Babel - Javascript(Babel); \n  Правый клик - Project Specific Syntax - Copy syntax settings;\n  Вставить в файл проекта .sublime-project\n\nЧтобы настройки применялись, надо открывать проект через Project - Open Project - выбрать файл project-name.sublime-project.\n\n\n\n### Component Basics\n\nМожно отрендерить несколько root components для разных react apps в одном проекте.\n\nКаждый реакт компонент должен рендерить HTML в DOM или возвращать код, который может быть отрендерен.\n\n### JSX\n\nJSX - это синтаксический сахар, он компилируется в вызов ф-ций React.createElement.\n\nВ JSX нельзя использовать слова, зарезервированные в js, например 'class'.\n\nJSX выражение внутри return должно содержать единственный корневой компонент.\n\n### Создание компонента\n\nПринято называть файлы с компонентами с большой буквы и помещать их в отдельную папку с таким же имененм.\n\n\n### Component Props\n\nМожно передаваить параметры в компоненты, как html-атрибуты.\n\nВсе атрибуты передаются в один аргумент компонента, который вляется объектом, а атрибуты - его св-ва. \nЕго можно назвать как угодно, но лучше - **props**.\n\n### Props.children\n\n - зарезервированное слово. Содержит любые эл-ты, которые содержаться внутри пользовательского компонента между <Component> и </Component>\n\n\n### State\n\n Св-во state можно добавлять в компоненты-классы. В то же время надо стараться как можно чаще использовать компоненты-ф-ции. Это потому что, если у слишком многих компонентов есть state, то приложение становится запутанным и трудно-поддерживаемым.\n\n state - зарезервированное слово, надо использовать именно его для хранения и управления внутренними данными компонента.\n\n Особенность state в том, что при его изменении React запускает рендеринг DOM с новыми свойствами.\n\n\n\n### Handling Events with Methods\n\nФ-цию обработчик задают, как метод компонента. Если сделать его стрелочной ф-цией, то this внутри него будет ссылаться на компонент. Если метод-обработчик - обычая ф-ция, то this при вызове из приложения будет undefined. Чтобы this ссылалось на компонент, надо передавая ссылку на обработчик привязать ее к компоненту:\n\n```javascirpt\n<button onClick = 'myClickHandler.bind(this)'\n```\n\n### To Which Events Can You Listen?\n\nIn the last lecture, we saw that you can react to the onClick event - but to which other events can you listen? You can find a list of supported events [here](https://reactjs.org/docs/events.html#supported-events).\n\n### Manipulating the State\n\nНадо вызывать \n\n```javascirpt\nthis.setState({})\n```\n\nпринимает объект, в котором указывают новые знаечения св-в state. Обновляет только те св-ва, которые указаны, не трогая другие.\n\nРеакт следит за state и props и обновляет нужные компоненты в DOM.\n\n\n### Using the useState() Hook for state manipulation.\n\nДо версии React 16.8 нельзя было использовать state в функциональных компонентах, только в компонентах-классах. И это устоявшийся способ разработки на реакт.\nС версии 16.8 возможно использовать функциональные компоненты для всего с помощью хуков. Это новый подход, его используют не все и неизвестно, что с ним будет в дальнейшем.\n\n\nХуки - это, по сути, коллекция ф-ций, предоставляемая React. И эти ф-ции можно использовать в функциональных компонентах.\n\nЧтобы использовать хуки надо импортироват их.\n\nuseState - хук, позволяющий управлять состоянием в функциональных компонентах.\n\n```javascript\nimport React, { useState } from 'react';\n```\n\nuseState всегда возвращает массив с двумя элементами:\n\n1.Текущее состояние.\n2.Функция, которая позволяет обновить состояние таким образом, что Реакт это увидит и перерендерит нуные компоненты.\n\nТекущее состояние, которое возвращает useState играет роль this.state, используемой в компонентах-классах.\nФункция, которую возвращает useState играет роль this.setState, используемой в компонентах-классах.\n\n### Различия исользования React Hooks и компонентов-классов.\n\nФ-ция для обновления состояния, возвращаемая useState, при вызове полностью заменяет текущее состояние своим аргументом. Поэтому надо вручную следить, чтобы вся информация из старого состояние попала в новое, иначе она потеряется.\n\n\n#### Решение проблемы\n\nИспользовать несколько вызовов useState, по одному для каждой переменной в состоянии. \nКаждая ф-ция useState будет возвращать свою ф-цию, которую надо использовать для изменения конкретной переменной.\n\n\n#### Stateless и Statefull Components\n\nStatefull (smart, container) - компоненты, имеющие состояние (как классы, так и ф-ции с хуками)\nStateless (dumb, presentational) - компоненты, без состояния\n\nХорошая практика - использовать как можно больше stateless компонентов. (В небольших приложениях - пара statefull, осатльные - stateless). Это облегчает сопровождение, так как вся логика собрана в одном месте и оттуда распространяется на все приложение.\n\n### Passing Method References Between Components\n\nЕсть метод, объявленный в каком-то компоненте. Как вызывать его в другом? \nНадо передать в компонент ссылку на метод, как значение атрибута.\n\nПередача:\n\n```javascript\n        <Person\n          name = {this.state.persons[2].name}\n          myClick = {this.switchNameHandler}\n        />\n```\n\nВызов:\n\n```javascript\n      <p onClick={props.myClick}>I'm a {props.name} and I'm {props.age} years old</p>\n```\n\nТаким образом можно передавать методы, меняющие state из родительского компонента в дочерние и дочерние компоненты смогут вызывать этот метод и повлиять на state родительского, к которому у них нет прямого доступа.\n\n\n#### Методы с параметрами\n\n```javascript\n  switchNameHandler = (newName) => {\n    console.log('Was Clicked');\n    console.log(this);\n    //DON'T DO THIS: this.state.persons[0].name = 'Maximillian';\n    this.setState({\n      persons: [\n        {name: newName, age: 28},\n        {name: 'Manu', age: 30},\n        {name: 'Stephany', age: 27}\n      ]\n    });\n  }\n```\n\nСпособы передачи параметров в дочерние компоненты:\n\n1. bind\n\n```javascript\n      <button onClick={this.switchNameHandler.bind(this,'Maximillian')}>Switch Name</button>\n```\n\n2.\n\n```javascript\n      <button onClick={() => this.switchNameHandler('Maximillian!!'))}>Switch Name</button>\n```\n\nЗдесь стрелочная ф-ция при клике будет возвращать результат выполнения this.switchNameHandler('Maximillian!!').\n\nСпособ 1 более эффективный, лучше использовать его. Потому что при втором способе React может перерендерить некоторые части в приложении слишком часто (???)\n\n\n### Two Way Binding\n\n```javascript\n      <input type=\"text\" onChange={props.myChanged} value={props.value}/>\n```\n\nЕсли убрать onChange, то input будет заблокирован, в него нельзя будет ввести значение, т.к. любое введенное значение будет заменятсья на {props.name}\n\n\n\n### Стили отдельным файлом\n\nФайл \\*.css лучше добавлять в папку компонента и называть так же, как комонент. Эти стили глобальные и видны всему приложению. Поэтому надо задать уникальный класс компоненту и использовать его, чтобы стили не смешивались.\n\nМы используем webpack и поэтому делаем import css-файлв в js файл компонента, чтобы webpack знал о его существовании обработал. \n\nWebpack динамически вставит этот css в тег <style></style> в head html-файла.\n\n### Инлайн-стили\n\nМожно записать стили в константу-объект внутри render() или в кастомном компоненте до return().\n\nЭто будет js, а не css, поэтому:\n* св-ва надо писать в camelCase или в кавычках; \n* значения свойств - в кавычках, через запятую.\n\n```javascript\n  render() {\n    const myStyle = {\n      backgroudColor: 'white',\n      font: 'inherit',\n      border: '1px solid blue',\n      padding: '8px'\n    };\n    return (\n      <div className=\"App\">\n        <button\n          style={myStyle}\n        >\n          Switch Name\n        </button>\n```\n\nВ инлайн-стилях трудно использовать все фичи css. Но плюс в том, что стили относятся только к конкретному элементу, который рендериться и не будут влиять на другие элементы. даже если они в том же компоненте.\n\nЕсть подход, позволяющий объединить плюсы обоих способов.\n\nВ кастомный компонент можно передавать инлайн стили, заданные в родительском компоненте через props.\n\n## Working with List and Conditionals\n\n### Rendering Content Conditionally\n\nВ  **JSX** внутри **{}** можно испльзовать **JS**.\nНо нельзя использовать сложные выражения, вроде **if {} else {}**.\nМожно испольщзовать тернарный оператор.\n\n```javascript\n        { this.state.boleanVal ?\n            <div>\n              ...\n            </div> : null\n        }\n```\n\nПосле ? тут неявно вызывается React.createElement('<div>...</div>')\n\nРеакт рендерит элементы внутри условия только если условие выполняется.\n\n### Handling Dynamic Content 'JS Way'\n\nКаждый раз, когда Реакт перерендерит компонент, он вызывает метод render(), а не только return().\nПоэтому внутри render() перед return() можно задать переменную, котороый присвоить значение с помощью JSX в зависимости от выполнения условий.\nВ retrun вставить **{имя_переменной}** и она отрендериться в этом  месте.\n\n\n\n```javascript\n  render() {\n\n    let persons = null;\n\n    if (this.state.showPersons) {\n      persons = (\n        <div>\n          <Person\n            style={myStyle}\n            name = {this.state.persons[0].name}\n            age = {this.state.persons[0].age}/>\n          <Person\n            name = {this.state.persons[1].name}\n            age = {this.state.persons[1].age}/>\n        </div>\n      );\n    }\n\n    return (\n      <div className=\"App\">\n        <h1>Hi, I am React App!</h1>\n        <div>\n          <button onClick={this.togglePersonsHandler}>Toggle Persons</button>\n        </div>\n        {persons}\n      </div>\n    );\n  }\n```\nЭто предпочтительный способ условного рендеринга.\n\n### Outputtting Lists, List and State\n\nЕдинственный источник информации в приложении - это state.\n\nЧтобы динамически выводить массив из state надо использовать map:\n\n```javascript\n  deletePersonHandler = (personIndex) => {\n    const persons = this.state.persons;\n    persons.splice(personIndex,1);\n    this.setState({persons: persons});\n  }\n\n  ...\n   render() {\n  ...\n\n  {this.state.persons.map(person => {\n    return <Person\n              myClick = {() => this.deletePersonHandler(index)}\n              name={person.name}\n              age={person.age} />\n  })}\n\n  ...\n```\n\nВ map можно передать стрелочную ф-цию, аргумент которой - эл-т массива. Она выполняется для каждого элемента.\n\nMap преобразет массив в другой массив и если эл-ты массива - jsx, то react попытается отрендерить их по-очереди.\n\n### Updating State Immutably\n\nНедостаток варианта изменения состояния, который показан выше в deletePersonHandler в том, что мы изменяем исходное состояние в операторе \n```javascript \n  persons.splice(personIndex,1);\n```\nЭто происходит, так массивы передаются по ссылке и persons - ссылка на исходный массив.\nЭто может приводить к ошибкам. Вообще нельзя менять состояние непосредственно, только через setState()\nЛучше сделать копию состояния и передавать эту копию в setState.\n\nСделать копию можно разными способами:\n\nМассив Вариант 1\n\n```javascript \n    const persons = this.state.persons.slice();\n```\n\nМассив Вариант 2\n\n```javascript \n    const persons = [...this.state.persons];\n```\nспред-оператор разбивает исходный массив на эл-ты, которые потом собираются в новый массив.\n\nОбъект Вариант 1\n\n```javascript \n    const person = {\n      ...this.state.persons[personIndex]\n    }\n```\n\nОбъект Вариант 2\n\n```javascript \n    const person = Object.assign({},this.state.persons[personIndex]);\n```\n\n\n### Lists and Keys\n\nKey - важное свойство, которое надо добавлять всегда при работе со списками данных. Key помогает Реакту эффективно обновлять списки. Без него Реакт обнвляет весь список при обновлении одного эл-та, а с key перерендерит только \nизмененные эл-ты списка.\n\nВ key надо передавать уникальный id эл-та списка. Часто он берется из БД. Значение index массива не очень подходит, т.к. при изменении массива могут меняться и id эл-тов и тогда index не очень поможет Реакт. Но если нет других вариантов, то лучше index, чем ничего.\n\n## Styling React Components & Elements\n\nПроблемы:\n\n1. Инайн-стили ограничены одним эл-том, но нельзя использовать псевдоэл-ты и некоторые другие фичи css. Можно испортировать css-файл, в котором можно использовать все фичи css, но тогда стили будут глобальные. \nКак объединиить плюсы обоих подходов?\n2. Как менять стили динамически? Т.е. например делат разные стили при разных состояниях приложения.\n\n### Setting Styles Dynamically\n\nДля инлайн-стилей мы можем изменить переменную в котрую записан стиль с помощью js в методe render перед return, и тогда в return()  в jsx, когда  мы вызовем ее в {}, в ней будет измененное значение.\n\n\n```javascript \n  render() {\n    const myStyle = {\n      backgroundColor: 'green',\n      color: 'white',\n      font: 'inherit',\n      border: '1px solid blue',\n      padding: '8px',\n      cursor: 'pointer'\n    };\n  ...\n  if (this.state.showPersons) {\n  ...\n  myStyle.backgroundColor = 'red';\n  }\n  return (\n    ...\n    <button\n      style={myStyle}\n      onClick={this.togglePersonsHandler}>\n        Toggle Persons\n    </button>\n    ...\n    );\n```\n\n### Setting Class Names Dynamically\n\nС классами можно также обращаться как с переменными\n\n```javascript \n  render() {\n    let classes = [];\n\n    if (this.state.persons.length <= 2) {\n        classes.push('red');\n    }\n\n    if (this.state.persons.length <= 1) {\n        classes.push('bold');\n    }\n    ...\n    return (\n        <p className = {classes.join(' ')}>This is really working!</p>\n    );\n```\n\n### Adding and Using Radium`\n\n\n\n## Questions\n\n1.Что если у меня в App.js вызывается много одинаковых компонентов, их состояние храниться в массиве и мне надо изменить значение и перерендерить только один компонент? Как это правильно сделать?\n\nВроде как, если есть key и список однотипных элементов,то Реакт перерендерит только измененные компоненты, хотя в setState передается весь массив.\n\n\n2.Как понять, что реакт перерендирит, а что нет? Например при использовании списков, и изменении одного пункта, как убедиться, что он перерендирит только измененные пункты списка?",
 			"file": "/home/helloworld/React-Guide/README.md",
+			"file_size": 34484,
+			"file_write_time": 132269522984187656,
 			"settings":
 			{
-				"buffer_size": 21711,
+				"buffer_size": 23527,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/App.css",
+			"settings":
+			{
+				"buffer_size": 87,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -174,16 +185,8 @@
 			"file": "src/App.js",
 			"settings":
 			{
-				"buffer_size": 2897,
+				"buffer_size": 3354,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Test.js",
-			"settings":
-			{
-				"buffer_size": 510,
 				"line_ending": "Unix"
 			}
 		}
@@ -199,6 +202,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ter",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
 			[
 				"Package Control: install",
 				"Package Control: Install Package"
@@ -367,7 +378,7 @@
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -399,7 +410,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -415,8 +426,8 @@
 						"selection":
 						[
 							[
-								91,
-								91
+								378,
+								378
 							]
 						],
 						"settings":
@@ -513,46 +524,6 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
@@ -567,7 +538,47 @@
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
-								"bh_default_content"
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
 							"editorconfig": true,
 							"ensure_newline_at_eof_on_save": true,
@@ -580,7 +591,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -596,8 +607,8 @@
 						"selection":
 						[
 							[
-								141,
-								141
+								142,
+								142
 							]
 						],
 						"settings":
@@ -621,21 +632,16 @@
 							},
 							"bracket_highlighter.clone_regions":
 							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -651,21 +657,26 @@
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -694,46 +705,6 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
@@ -748,7 +719,47 @@
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
-								"bh_default_content"
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
 							"editorconfig": true,
 							"ensure_newline_at_eof_on_save": true,
@@ -761,7 +772,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -770,15 +781,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 21711,
+						"buffer_size": 23527,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20463,
-								20463
+								22985,
+								22985
 							]
 						],
 						"settings":
@@ -798,379 +809,45 @@
 								},
 								"unmatched":
 								{
+									"1":
+									[
+										22411,
+										22412
+									]
 								}
 							},
 							"bracket_highlighter.clone_regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content"
-							],
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 6793.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/App.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2897,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								414,
-								414
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": true,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
-							"trim_trailing_white_space_on_save": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1140.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/Test.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 510,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
@@ -1181,31 +858,11 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
@@ -1230,69 +887,267 @@
 								},
 								"unmatched":
 								{
+									"1":
+									[
+										22871,
+										22872
+									]
 								}
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 15664.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/App.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 87,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								84
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
-								"bh_default_content"
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										85,
+										86
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										62,
+										63
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
 							],
 							"editorconfig": true,
 							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true,
 							"trim_trailing_white_space_on_save": true
@@ -1302,6 +1157,217 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/App.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3354,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2829,
+								2829
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										681,
+										682
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										401,
+										402
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3324,
+										3325
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										2762,
+										2763
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1767.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1338,6 +1404,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.Terminus":
+	{
+		"height": 132.0
+	},
 	"output.exec":
 	{
 		"height": 120.0
