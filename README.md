@@ -1223,7 +1223,7 @@ Static method.
 
 ### Component Update Lifecycle (for props Changes)
 
- 0. getDerivedStateFromProps(props, state)
+0. getDerivedStateFromProps(props, state)
 
 ## Questions
 
