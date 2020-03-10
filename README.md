@@ -394,9 +394,10 @@ App испортируется из файла App.js (.js опущен)
 * Открыть js файл; 
   View - Syntax - Babel - Javascript(Babel); 
   Правый клик - Project Specific Syntax - Copy syntax settings;
-  Вставить в файл проекта .sublime-project
+  Вставить в файл проекта .sublime-project (открывается Project - Edit Project)
 
 Чтобы настройки применялись, надо открывать проект через Project - Open Project - выбрать файл project-name.sublime-project.
+Для этого надо сначала создать этот файл через Project - Create Project при открытой папке с проектом.
 
 
 
@@ -1418,6 +1419,26 @@ export default React.memo(cockpit);
 
 В нашемслучае компонент все равно перерендеритс при изменениии persons.name, потому что мы передаем в него persons, хотя фактически мы проверяем только persons.length. Если передавать в качестве параметра this.persons.length, то он будет изменяться только при изменении persons.lenght.
 
+memo делает только поверхностное сранвение. Чтобы сравнить вручную, надо использовать сторой параметр memo - ф-цию сравнения.
+В отличие от shouldComponentUpdate эта ф-ция должна вернуть false, чтобы компонет перерендерился.
+
+```javascript
+function MyComponent(props) {
+  /* render using props */
+}
+function areEqual(prevProps, nextProps) {
+  /*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+}
+export default React.memo(MyComponent, areEqual);
+```
+https://reactjs.org/docs/react-api.html#reactmemo
+
+memo не влияет на state или context, сравнивает только props
+
 ### When should you optimize?
 
 Проверять обновление компонента с помощью shouldComponentUpdate или React.memo надо только если компонент не всегда должен обновляться при обновлении родителя. Бывают компоненты, которые при обновлении родителя обнвляются всегда или почти всегда, в них такие проверки не нужны, т.к. это выполненине лишнего кода и будеыт только замедлять приложение.
@@ -1771,7 +1792,7 @@ static contextType = AuthContext;
     console.log(this.context);
   }
 ```
-Имя точно такое. static - это св-во не может быть доступно извне компонента, только в его потомках.
+Имя точно такое. static - это св-во доступно извне компонента.
 
 ```javascript
     return (
@@ -1788,8 +1809,41 @@ import React, { useEffect, useRef, useContext } from 'react';
 import AuthContext from '../../context/auth-context';
 ...
   const authContext = useContext(AuthContext);
-,,,
+...
       <button onClick={authContext.login}>Log in</button>
+```
+
+Если через контекст передавать объект, то дочерние компоненты будут перерисованы, даже если объект не изменился, т.к. Provider создает какждый раз новый объект, а объекты сравниваются по ссылке.
+
+Чтобы избежать перерисовки, надо положить объект в state.
+
+https://learn-reactjs.ru/core/context#394
+
+Если надо в качестве значения state присвоить метод, то надо определить метод до state, либо присвоить значение state в constructor.
+
+```javascript
+  increaseFirst = () => {
+    ...
+  }
+
+  state = {
+    numbers: {
+      first: 1,
+      second: 10,
+    },
+    numContextValue: {increaseFirst: this.increaseFirst}
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <Num.Provider value = {this.state.numContextValue}>
+          <NumberControls/>
+        </Num.Provider>
+      </div>
+    );
+  }
 ```
 
 ### Useful Resources & Links
@@ -1803,6 +1857,35 @@ PropTypes: https://reactjs.org/docs/typechecking-with-proptypes.html
 Higher Order Components: https://reactjs.org/docs/higher-order-components.html
 
 Refs: https://reactjs.org/docs/refs-and-the-dom.html
+
+## A Real App: The Burger Builder (Basic Version)
+
+### Planning an App in React - Core Steps
+
+1.Component Tree / Component Structure
+
+\- этот план может менятся по мере разработки приложения
+
+2.Application State (Data)
+
+3.Components vs Containers
+
+Какие компоненты будут stateless а какие statefull.
+
+### Planning the State
+
+Чтобы решить на каком уровне делать state, надо определить к какому компоненту данные отнсятся и влияют. Надо учитывать, что могут появится в будущем другие компоннты с другими данными и поэтому надо подумать, прежде чем запихивать все данные в App. 
+
+О том, использовть ли PureComponent или shouldComponentUpdate лучше решить в процессе рзаработки, когда будет видно, где стоит оптимизировать цикл обновления.
+
+### Creating a Layout Component
+
+Можно разделить сожержимое layout на две части:
+
+1. Навигация - toolbar, sidedrawer, backdrop
+2. Содержимое страницы - burger builder
+
+Потому что навигация всегда на странице, а содержимое может менятся при навигации по страницам приложения.
 
 
 ## Questions
@@ -1823,3 +1906,34 @@ Refs: https://reactjs.org/docs/refs-and-the-dom.html
 3.Как в shouldComponentUpdate происходит сравнение массивов и объектов? Ведь вроде как они передаются по ссылке и сравниваются ссылки?
 
 Поскольку мы используем immutable изменение, то при любом изменении в свойство записывается новый массив.
+
+
+4.При использовании css-modules при повтроном использовании блока получается, что нельзя добавить ему класс, не используя параметры. Может быть в каждом компоненте добавлять props.class и использовать его в className? Нормальная ли это практика?
+
+
+```javascript
+<div className = {classes.Toolbar}>
+  <Logo addclass = {classes.Logo}/>
+</div>
+```
+
+```javascript
+const Logo = props => {
+
+  console.log(props.addclass);
+
+  const classnames = [classes.Logo];
+  if (props.addclass) {
+    classnames.push(props.addclass);
+  }
+
+  console.log(classnames);
+
+  return (
+    <div className={classnames.join(' ')}>
+      <img src={burgerLogo} alt='MyBurger'/>
+    </div>
+  );
+
+}
+```
