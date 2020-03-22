@@ -5,7 +5,10 @@
 * [3. The Basics](#the-basics)
 * [4. Working with List and Conditionals](#working-with-list-and-conditionals)
 * [5. Styling React Components & Elements](#styling-react-components--elements)
-* [6. Diving Deeper into Components & React Internals](#diving-deeper-into-components--react-internals)
+* [6. Debugging React Apps](#debugging-react-apps)
+* [7. Diving Deeper into Components & React Internals](#diving-deeper-into-components--react-internals)
+* [9. Reaching out to the Web (Http / Ajax)]
+* [10. Section 10: Burger Builder Project: Accessing a Server]
 * [ Questions](#questions)
 
 
@@ -1887,6 +1890,214 @@ Refs: https://reactjs.org/docs/refs-and-the-dom.html
 
 Потому что навигация всегда на странице, а содержимое может менятся при навигации по страницам приложения.
 
+## Reaching out to the Web (Http / Ajax)
+
+### Understanding Http Requests in React
+
+В single page application frontend и backend разделены и они не могут обмениваться информацией как в multi page - через html.
+В SPA фронтенд и сервер обмениваются информацией в виде json.
+Обычно сервер содержит RESTful API.
+
+### Understanding our Project and Introducing Axios
+
+https://jsonplaceholder.typicode.com/
+- можно использовать для тестирования, если нет сервера.
+
+Способы отправить запрос:
+* XMLHttpRequest - js объект, с его помощб можно составлять ajax-запросы, отпарвлять их на сервер и обрабатывать ответ. Но он довольно громоздкий в использовании.
+* Сторонняя библиотека. Например, Axios.https://github.com/axios/axios . Можно использовать где угодно, не только в Реакт.
+
+```javascript
+import axios from 'axios';
+```
+
+### Creating a Http Request to GET Data
+
+
+Нельзя просто присвоить результат выполнения ф-ции, делающей http запрос, переменной.
+http-запросы выполняются асинхроннно, т.е. должно пройти какое-то время после отправки запроса, через которое будет получен ответ.
+А js выполняет код синхронно. Т.е. при присвоении занчения переменной сразу должна выполняться правая часть оператора присвоения.
+Поэтому axios использует промисы и axios.get возвращает промис.
+
+
+```javascript
+    componentDidMount() {
+        console.log('[Blog] componentDidMount');
+        const posts = axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(response => {
+                console.log(response);
+            })
+        console.log(posts);
+    }
+```
+
+then - метод с аргументом - функцией, которая выполняется, когда промис выполнится (в нашем случае - когда запрос вернется). 
+Axios передает возвращенные данные в параметр response этой ф-ции.
+
+### Rendering Fetched Data to the Screen
+
+Response надо обрабатывать в then(), а не после axios.get. Потому что все операторы после axios.get js выполнит сразу, не дожидаясь возвращения промиса.
+
+```javascript
+    const posts = axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then(response => {
+          this.setState({posts: response.data})
+      })
+...
+    render () {
+        const posts = this.state.posts.map(post => {
+          return <Post key={post.id} title={post.title}/>
+        })
+    ...
+    }
+...
+```
+
+
+### Transforming Data
+
+Данные возвращенные с сервера можно обработать в ф-ции-аргументе then с помощью js.
+
+```javascript
+   componentDidMount() {
+    const posts = axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then(response => {
+        const posts = response.data.slice(0,4);
+        const updatedPosts = posts.map(post => {
+            return {
+                ...post,
+                author: 'Max'
+            }
+        })
+        this.setState({posts: updatedPosts});
+      })
+    }
+...
+```
+
+###  Fetching Data on Update (without Creating Infinite Loops)
+
+Если в ComponentDidMount добавить setState то можно уйти в бесконечный цикл запросов. Поэтмоу перед http-запросом надо проверять, надо ли его выполнять.
+Например, выполнять запрос только когда переданы параметры для запроса, при этом запрос либо еще не далался либо по делалася, но параметры запроса изменились.
+
+```javascript
+    componentDidUpdate() {
+        if (this.props.id > 0 && (!this.state.loadedPost || this.state.loadedPost.id !== this.props.id)) {
+            const post = axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+                .then(response => {
+                      this.setState({loadedPost: response.data});
+                })
+        }
+    }
+```
+
+### Adding Interceptors to Execute Code Globally
+
+Interceptors - глобальные ф-ции в axios, которые вызываются для любого запроса от приложения и для любого ответа в приложение.
+Можно применять, например, для установки общих header (например, authorization header) или для сохранения лога ответов или для обработки ошибок глобально.
+
+В index.js:
+
+```javascript
+axios.interceptors.request.use(request => {
+  // Edit request config
+  return request;
+}, error => {
+  return Promise.reject(error);
+})
+```
+ - этот интерсепор обрабатывает только запросы.
+
+
+Так мы регистрируем новый interceptor.
+Здесь request - это конфигурация
+Все импорты axios в приложении пользуются одной конфигурацией. Поэтому можно задать конфигурацию в одном месте и она будет использоваться везде.
+
+Первая ф-ция обрабатывает успешный request и должна возвращать request, иначе все запросы заблокируются и будет ошибка
+Можно внутри отредактировать request, добавить хедеры, например. Интерсептор быдет работать для всех запросов во всем приложении.
+
+Можно передать в интерсептор вторую ф-цию, которая будет обрабатывать ошибки. Эта ф-ция должна вернуть Promise.reject(error); 
+чтобы вернуть ошибку в компонент, который отправил запрос и там ее можно обработать с помощью catch. Это имеет смысл, когда в разных компонентах надо сделать что-то свое, но при этом еще и обработать ошибку глобально, например, занести в лог.
+
+Интерептор для ответов
+
+```javascript
+axios.interceptors.response.use(response => {
+  // Edit request config
+  return response;
+}, error => {
+  return Promise.reject(error);
+})
+```
+
+### Removing Interceptors
+
+You learned how to add an interceptor, getting rid of one is also easy. Simply store the reference to the interceptor in a variable and call eject  with that reference as an argument, to remove it (more info: https://github.com/axios/axios#interceptors):
+
+```javascript
+    var myInterceptor = axios.interceptors.request.use(function () {/*...*/});
+    axios.interceptors.request.eject(myInterceptor);
+```
+
+
+### Setting a Default Global Configuration for Axios
+
+Иногда надо установить глобальные паарметры для всех запросов. Например, адрес сервера.
+
+```javascript
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
+```
+
+Тогда в запросах можно не указывать начало url, заданное в baseURL, а только остальную часть.
+
+```javascript
+        const posts = axios.get('/posts')
+```
+
+Можно задать параметры header для всех типов запросов:
+
+```javascript
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+```
+
+Можно задать параметры header только для post, например:
+
+
+```javascript
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+```
+
+### Creating and Using Axios Instances
+
+Допустим мы хотим использовать разные глобальные параметры axios для разных частей приложения.
+В этом случае можно использовать instances.
+
+Надо создать axios.js в той же папаке, что и index.js. 
+Ф-ция axios.create создает инстанс axios, т.е. копию объекта axios. Таких копий можно создать несколько.
+Можно в объекте задать параметр по-умолчанию, параметры заголовка только для этого инстанса.
+Можно добавить интерсепторы
+
+```javascript
+import axios form 'axios';
+
+const instance = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com'
+});
+
+instance.defaults.headers.common['Authorization'] = 'AUTH TOKEN FROM INSTANCE';
+
+//instance.interceptors.request.use
+
+export default instance;
+```
+
+В импорте файла, в котором хотим использовать инстанс:
+
+```javascript
+import axois from '../../axios';
+```
+
+## Section 10: Burger Builder Project: Accessing a Server
 
 ## Questions
 
