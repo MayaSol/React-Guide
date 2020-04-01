@@ -1,0 +1,11 @@
+{
+	"folders":
+	[
+		{
+			"path": "/home/helloworld/React-Guide/http"
+		}
+	],
+	"syntax_override": {
+		"\\.js$": ["Babel", "JavaScript (Babel)"]
+	}
+}
