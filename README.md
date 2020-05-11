@@ -9,8 +9,8 @@
 * [7. Diving Deeper into Components & React Internals](#diving-deeper-into-components--react-internals)
 * [8. A Real App: The Burger Builder (Basic Version)](#a-real-app-the-burger-builder-basic-version)
 * [9. Reaching out to the Web (Http / Ajax)](#reaching-out-to-the-web-http--ajax)
-* [10. Burger Builder Project: Accessing a Server](#https://github.com/MayaSol/React-Guide#section-10-burger-builder-project-accessing-a-server)
-* [11. Routing](https://github.com/MayaSol/React-Guide#11-routing)
+* [10. Burger Builder Project: Accessing a Server](#https://github.com/MayaSol/React-Guide#burger-builder-project-accessing-a-server)
+* [11. Routing](https://github.com/MayaSol/React-Guide#multi-page-feeling-in-a-single-page-app-routing)
 * [ Questions](#questions)
 
 
@@ -1228,7 +1228,7 @@ Static method.
 5. componentDidMount()
 
 Очень важный lifecycle hook. Используется часто. В нем можно вызывать side effects. (HTTP запросы, например)
-В нем не надо менять состояние и вызывать setState() (запускает re-rendering), кроме некоторых случаев, например, когда в блоке then промиса после отправки htttp реквеста, т.е. можно изменить что-то в будущем, наComponent Creation Lifecycle in Actionпример, когда придет запрос. Но синхронно измененять state нельзя, сразу после того, как будет вызован componentDidMount().
+В нем не надо менять состояние и вызывать setState() (запускает re-rendering), кроме некоторых случаев, например, когда в блоке then промиса после отправки htttp реквеста, т.е. можно изменить что-то в будущем, наnпример, когда придет запрос. Но синхронно измененять state нельзя, т.е. нельзя сразу после того, как будет вызован componentDidMount().
 
 * componentWillMount() - будет скоро удален, хотя пока можно использовать. Вместо него можно использовать getDerivedStateFromProps во многих случаях.
 
@@ -1914,6 +1914,20 @@ https://jsonplaceholder.typicode.com/
 import axios from 'axios';
 ```
 
+**Альтернативы:**
+https://app.fakejson.com/member
+
++: позволяет генерить json со своей структурой, сохранять сгенеренные json
+-: оганичения в бесплатной версии, нельзя обратиться к одной записи в сгенеренном json
+
+https://mockapi.io
+
+Позволяет генерить json со своей структурой, есть доступ к отдельным объектам
+
+Статья - [Data mocking – Ways to fake a backend (API)](https://michael-kuehnel.de/api/2016/11/04/data-mocking-ways-to-fake-a-backend-api.html)
+в конце есть ссылки на генераторы
+
+
 ### Creating a Http Request to GET Data
 
 
@@ -2423,18 +2437,136 @@ import { Route, Switch } from 'react-router-dom';
 Другой способ переходить на страницы по клику
 
 ```javascript
+class Posts extends Component {
+    ...
+
+    onPostClickHandler = (id) => {
+        this.props.history.push('/' + id);
+    }
+
+  ...
+
+  <Post
+    key={post.id}
+    title={post.title} 
+    author={post.author} 
+    click={() => this.onPostClickHandler(post.id)}
+  />
 ```
 
-Удобно применить, когда надо перейти по ссылке не сразу, а после окончания какого-то процесса, например, после выполнения какого-то запроса.
+Удобно применить, когда надо перейти по ссылке не сразу, а после окончания какого-то процесса, например, после выполнения http-запроса.
 
-В св-ве history из объекта props, который передается компонентом <Route> в вызываемый компонент есть методы, которые можно использовать.
-Например goForward, goBack - перейти вперед назад.
+В св-ве history из объекта props, который передается компонентом <Route> в вызываемый компонент, есть методы, которые можно использовать.
+Например goForward, goBack - перейти вперед или назадпо стеку страниц.
 Метод push - помещает страницу в стек страниц.
 
 В метод push передаются такие же аргументы, как и в аргумент to компонента Link. 
 
+### Additional Information Regarding Active Links
+
+Не стоит использовать адреса для страница вида /something-dynamic, где somothing-dynamic - переменный параметр, т.к. мы не сможем стилизовать ссылки только на эти адреса.
+Для того чтобы стилизовать активные ссылки на все такие адреса, надо указать в ссылке to="/", но не указывать exact. Но тогда к этой ссылке будет добавлен класс active на всех страницах, у которых адрес начинающиется на '/', а это вообще все страницы в приложении. 
+Лучше добавить такой ссылке префикс, например /posts/:something-dynamic
 
 
+### Understanding Nested Routes
+
+До сих при смене роутера мы меняли на странице один компонент на другой.
+Иногда надо отрендерить один компонент внутри другого.
+
+Для этого надо вставить <Route> в любое место в другом компоненте, если этот компонент находится внутри <BrowserRouter> (в том числе вложен в BrowserRouter)
+
+*Blog.js*
+```javascript
+                <Switch>
+                    <Route path="/new-post" exact component={NewPost} />
+                    <Route path="/" component={Posts} />
+                </Switch>
+```
+
+\- здесь надо убрать exact у  **<Route path="/" component={Posts} />**, потому что, при переходе на конкретный пост из компонента Posts путь будет вида /:id, а поскольку при exact такого варианта нет в Blog.js, то не будут отображаться Posts, а следовательно и FullPost, который загружается из Posts.
+При Nested Routes все возможные адреса должны быть доступны в корневом копоненте.
+
+*posts.js*
+
+```javascript
+    onPostClickHandler = (id) => {
+        this.props.history.push('/posts/' + id);
+    }
+    ...
+        return (
+                <div>
+                <Route path="/posts/:postId" component={FullPost} />
+                <section className="Posts">
+                    {posts}
+                </section>
+        );
+```
+
+*FullPost.js*
+
+```javascript
+    componentDidUpdate() {
+        console.log('[FullPost componentDidUpdate]');
+        if (this.props.match.params.postId > 0 && (!this.state.loadedPost || this.state.loadedPost.id !== this.props.match.params.postId)) {
+            console.log('Post loading 2 ...');
+            const post = axios.get('/posts/' + this.props.match.params.postId)
+                .then(response => {
+                        console.log('Post loaded: ');
+                        console.log(response.data);
+                        this.setState({loadedPost: response.data});
+
+                })
+        }
+    }
+    ...
+    render () {
+      let post = <p>Please select a Post!</p>;
+      if (this.props.match.params.postId) {
+          post = <p>Loading...</p>
+      }
+      if (this.state.loadedPost) {
+          post = (
+              <div>
+                  <h1>{this.state.loadedPost ? this.state.loadedPost.title : 'Title'}</h1>
+                  <p>{this.state.loadedPost ? this.state.loadedPost.body : 'Content'}</p>
+                  <div className="Edit">
+                      <button onClick = {this.deletePostHandler} className="Delete">Delete</button>
+                  </div>
+              </div>
+          );
+      }
+      return (
+          <div className="FullPost">
+              {post}
+          </div>
+      )
+    }
+
+```
+
+Можно сделать относительный путь к компоненту динамическим, чтобы он работал из любого места и присоединялся к текущему пути динамически.
+Текущий путь берем из
+
+*posts.js*
+
+```javascript
+    onPostClickHandler = (id) => {
+        this.props.history.push('/posts/' + id);
+    }
+    ...
+        return (
+                <div>
+                <Route path={this.props.match.url + '/:id'}  component={FullPost} />
+                <section className="Posts">
+                    {posts}
+                </section>
+        );
+```
+
+## Creating Dynamic Nested Routes
+
+В предыдцщем примере при первом клике на пост ничего не загружается, хотя осуществляется переход на страницу /posts/:postId
 
 ## Questions
 

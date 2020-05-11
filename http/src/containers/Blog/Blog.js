@@ -17,7 +17,7 @@ class Blog extends Component {
                 <header className = "Blog">
                     <nav>
                         <ul>
-                            <li><NavLink to="/" exact>Home</NavLink></li>
+                            <li><NavLink to="/posts" exact>Posts</NavLink></li>
                             <li>
                                 <NavLink to={{
                                  pathname: "/new-post",
@@ -34,10 +34,9 @@ class Blog extends Component {
                 </header>
                 {/*<Route path="/" exact render={() => {return <h1>Home</h1>}} />
                 <Route path="/" exact render={() => {return <h1>Home 2</h1>}} />*/}
-                <Route path="/" exact component={Posts} />
                 <Switch>
                     <Route path="/new-post" exact component={NewPost} />
-                    <Route path="/:postId" component={FullPost} />
+                    <Route path="/posts" component={Posts} />
                 </Switch>
             </div>
         );

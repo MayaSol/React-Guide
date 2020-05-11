@@ -4,7 +4,6 @@ import './Post.css';
 
 const post = (props) => {
 
-
 	console.log('[Post]');
 	console.log(props);
 
