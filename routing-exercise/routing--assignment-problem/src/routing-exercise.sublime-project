@@ -1,0 +1,11 @@
+{
+	"folders":
+	[
+		{
+			"path": "/home/helloworld/React-Guide/routing-exercise/routing--assignment-problem"
+		}
+	],
+	"syntax_override": {
+	"\\.js$": ["Babel", "JavaScript (Babel)"]
+}
+}

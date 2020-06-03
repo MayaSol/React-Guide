@@ -146,6 +146,7 @@ const myFunc= number => number*2;
 
 
 Default export: 
+
 ```javascript
 const person = {
 	name: 'Max'
@@ -168,7 +169,7 @@ export baseData;
 Default import:
 
 ```javascript
-import prs form person.js;
+import prs from person.js;
 ````
 
 * можно называть как угодно, всегда импортируется default
@@ -2209,11 +2210,11 @@ render () {
 
 ```
 
-path без exact - с чего начинается путь
-path с exact - точное соответствие пути
+path без exact - с чего начинается путь  
+path с exact - точное соответствие пути  
 render - что возвращает при соответствии
 
-Можно использовать несколько <Route /> даже для одного и того же условия. Рендериться будет все, в случае соответствия условиям. 
+Можно использовать несколько `<Route />` даже для одного и того же условия. Рендериться будет все, в случае соответствия условиям. 
 Можно оборачивать в любые теги.
 
 ### Rendering Components for Routes
@@ -2489,7 +2490,7 @@ class Posts extends Component {
                 </Switch>
 ```
 
-\- здесь надо убрать exact у ```javascript<Route path="/" component={Posts} />**```, потому что, при переходе на конкретный пост из компонента Posts путь будет вида /:id, а поскольку при exact такого варианта нет в Blog.js, то не будут отображаться Posts, а следовательно и FullPost, который загружается из Posts.
+\- здесь надо убрать exact у ```<Route path="/" component={Posts} />```, потому что, при переходе на конкретный пост из компонента Posts путь будет вида /:id, а поскольку при exact такого варианта нет в Blog.js, то не будут отображаться Posts, а следовательно и FullPost, который загружается из Posts.
 При Nested Routes все возможные адреса должны быть доступны в корневом копоненте.
 
 *posts.js*
@@ -2792,7 +2793,20 @@ const Posts = React.lazy(() => import('./containers/Posts'));
 
 ### Routing and Server Deployment
 
+1. Когда пользователь переходит по определенному адресу, сначала он отправляет запрос на сервер. Но в случае с one-page application на React все пути хранятся внутри приложения и сервер может их не знать.
+На сервере разработки все работает, потому что он правильно настроен.
 
+Надо настроить сервер так, чтобы он всегда перенаправлял запросы пользователя на приложение (на страницу index.html), даже если он их не понимает.
+
+2. Если приложение находится, например, на example.com, то ничего делать не надо.
+Если приложение находится на example.com/myapp, то надо сообщить об этом React (react-router).
+Надо указать в <BrowserRouter> атрибут basename='/myapp'. По-умолчанию basename="/"
+
+```javascript
+<BrowserRouter basename="/myapp">
+...
+</BrowserRouter>
+```
 
 ## Questions
 
