@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"соот",
+				"соответствующему\tabc"
+			],
+			[
 				"const",
 				"constructor\tabc"
 			],
@@ -480,13 +484,10 @@
 	"buffers":
 	[
 		{
-			"contents": "# React - The Complete Guide (incl Hooks, React Router, Redux) \n\n* [1. Getting Started](#getting-started)\n* [2. JavaScript ES6](#javascript-es6)\n* [3. The Basics](#the-basics)\n* [4. Working with List and Conditionals](#working-with-list-and-conditionals)\n* [5. Styling React Components & Elements](#styling-react-components--elements)\n* [6. Debugging React Apps](#debugging-react-apps)\n* [7. Diving Deeper into Components & React Internals](#diving-deeper-into-components--react-internals)\n* [8. A Real App: The Burger Builder (Basic Version)](#a-real-app-the-burger-builder-basic-version)\n* [9. Reaching out to the Web (Http / Ajax)](#reaching-out-to-the-web-http--ajax)\n* [10. Burger Builder Project: Accessing a Server](#https://github.com/MayaSol/React-Guide#burger-builder-project-accessing-a-server)\n* [11. Routing](https://github.com/MayaSol/React-Guide#multi-page-feeling-in-a-single-page-app-routing)\n* [ Questions](#questions)\n\n\n## Getting Started\n\n### Intro\n\nReact - JS библиотека для построения пользовательских интерфейсов. Приложения на реакт запускаются в браузерах. Все действия происходят сразу после того, как они инициированы пользователем. Не надо ждать ответа от сервера.\n\nПользовательские интерфейсы на Реакт построены с помощью компонентов. Все что видит пользователь на странице можно разбить на компоненты. (Например, хедер, футер, контент, сайдбар)\n\nПочему компоненты это удобно?\n\n * Легче поддерживать код\n * Можно переиспользовать компоненты.\n\n Каждый компонент в итоге выдает какой-то настраиваемый элемент html-разметки.\n\n\n### First React Code\n\n#### Окружение\n\nДля использования React нужно как минимум следующее:\n\n * React - содержит необходимую логику для создания компонентов\n * React DOM - рендерит компоненты в настоящий DOM\n * Babel - JS препроцессор для использования последних фич JS, в итоге делает код таким, чтобы он работал в любых браузерах, а писать его можно со всеми последними фичами.\n\n#### Компонент\n\nКомпонент реакт - это ф-ция, возвращает код, который будете рендериться в DOM.\nНазвание - с большой буквы.\nВозвращаемый код можно писать в формате **JSX**.\n\nreturn () - в скобках многострочный код, туда можно просто вставить разметку и Babel преобразует ее в правильный код.\n\n```javascript\n  ReactDOM.render(<ComponentFunctionName />,document.querySelector('#componentBlockId'));\n```\n  рендерит компонент, принимает:\n\n * компонент, как html-элемент ( в < />)\n * html-элемент, в который вставить компонент\n\nВ **JXS** лучше использовать className вместо class, т.к. class - зарезервированное слово (но у меня в кодепен и class сработал)\n\n#### Параметры\n\nОдно из главных преимуществ компонентов, в том, что мы можем формировать их динамически.\n\nВ аргумент компонента передаются все атрибуты, которые задаются компоненту при рендеринге.\n\nАргументы передаются в **JSX** внутри **{}**.\n\nТаким образом можно переиспользовать один и тот же компонент с разными параметрами.\n\n#### Рендеринг одной переменной app\n\nМожно поместить все компоненты в одну переменную и отрендерить ее. Их надо обернуть в один эл-т, т.к. **JSX** принимает только один корневой элемент.\nС таким подходом создают Single Page Application.\n\n[codepen](https://codepen.io/mayasol/pen/OJVJJJX)\n\n\n#### Какие проблемы решает React\n\n * трудности в управлении состоянием пользовательского интерфейса. При изменении html разметки надо менять js, т.к. элементы определяются querySelector. В приложениях, где надо быстро добавлять или удалять эл-ты код становится громоздким.\n\n * позволяет сконцентрироваться на логике приложения и не беспокоиться о технической реализации многих вещей\n\n * у React хорошая поддержка, код работает быстро и эффективно\n\n * большое коммьюнити, легко найти решение проблемы, дополнительные пакеты\n\n\n#### Single Page Application\n\n\n**Single Page Applcation**\n\n - самый популярный подход для приложений на реакт. Работает быстрее, т.к. не надо перезагружать всю страницу и ждать ответа от сервера.\n\n * Получаем одну страницу с сервера. Страница состоит из реакт-компонентов. Сама страница - root-компонент, который тоже управляется реактом.\n\n * Используется подход с единственным вызовом ReactDOM.render() для корневого эл-та.\n\n * рекомендуется использовать библиотеку react-router\n\n\n **Multi Page Application**\n\n * много страниц, по одной на каждый адрес. Реакт используется для отдельных виджетов, которые не знают о существовании друг друга.\n\n * ReactDOM.render() вызывается для каждого виджета.\n\n\n## JavaScript ES6\n\nJSBean - удобная песочница. Можно выполнять JS и видеть вывод в консоль.\n\n### Let and Const\n\nИспользуйте let для переменных и const для констант.\n\n### Arrow Functions\n\n\n```javascript\nconst myFunc=()=> {\n...\n}\n````\n\nС одним аргументом:\n\n```javascript\nconst myFunc= name => {\n...\n}\n````\n\nТолько с оператором return в теле:\n\n```javascript\nconst myFunc= number => number*2;\n````\n\n\n### Экспорт и Импорт (Модули)\n\nПозволяет разбить код на файлы. Импортировать в файл другие файлы, чтобы js код в файле знал какие у него зависимости.\n\n\nDefault export: \n```javascript\nconst person = {\n\tname: 'Max'\n}\n\nexport default person\n````\n\nNot default export: \n\n```javascript\nconst clean = () => { ... };\n\nconst baseData = 10;\n\nexport clean;\nexport baseData;\n````\n\nDefault import:\n\n```javascript\nimport prs form person.js;\n````\n\n* можно называть как угодно, всегда импортируется default\n\n\nNot default import (named import)\n\n```javascript\nimport {clean as MyClean} form  utility.js;\nimport {baseData as MyData} form  utility.js;\n\nimport * as bundled from utility.js;\n````\n* надо указывать точные имена в {} и можно указать свое имя после **as** \n* bundled - объект, содержащий все импортированные переменные как св-ва\n\n### Classes\n\n```javascript\nclass Human {\n  constructor() {\n    this.gender = 'female';\n  }\n  \n  printGender() {\n    console.log(this.gender);\n  }\n}\n\nclass Person extends Human {\n  constructor() {\n    super();\n    this.name = 'Maya';\n    this.gender = 'male';\n  }\n  \n  printMyName() {\n    console.log(this.name);\n  }\n}\n\nconst person = new Person();\n\nperson.printMyName();\nperson.printGender();\n```\n\nsuper() - вызывает constructor() родительского класса\n\n### Classes Properties and Methods\n\nES7 синтакс задания св-в класса:\n\n```javascript\n\nclass MyClass {\n\n  myProperty = 'value';\n  \n  myMethod = () =>  {};\n}\n```\n\nПреимущества использования стрелочной ф-ции, как значения св-ва - нет проблем с this для методов. (? Они всегда вызываются в контектсе своего объекта ?)\n\n```javascript\nclass Human {\n    gender = 'female';\n  \n  printGender = () => {\n    console.log(this.gender);\n  }\n}\n\nclass Person extends Human {\n    name = 'Maya';\n    gender = 'male';\n  \n  printMyName = () => {\n    console.log(this.name);\n  }\n}\n\nconst person = new Person();\n\nperson.printMyName();\nperson.printGender();\n```\n\n[jsbin](https://jsbin.com/picilap/10/edit?js,output)\n\n\n### Spread and Rest Operators\n\n* Spread \n\n используется чтобы разделить элементы массива или св-ва объекта.\n\n```javascript\nconst newArray = [...oldArray,1,2];\nconst newObject = {...oldObject,newProp: 5}\n```\n\n если у oldObject есть св-во newProp оно будет переписано с новым значением\n\n* Rest\n\n```javascript\nfunction sortArgs(...args) {\n\treturn args.sort();\n}\n```\n\nэта ф-ция принимает любое количество аргументов в массив args\n\n\n### Destructuring\n\nИзвлечение эл-тов массива или св-в объекта и сохранение их в переменных.\n\n```javascript\n[a, , b] = ['Hello',',','World'];\nconsole.log(a); // 'Hello'\nconsole.log(b); // 'World'\n```\n\n```javascript\n[name] = {name: 'Maya',age: '37'];\nconsole.log(name); // 'Maya'\nconsole.log(age); // undefined\n```\n\n### Reference and Primitive Type Refresher\n\nПримитивы копируются при присваивании в переменную или при присванивании переменной значения другой переменной.\nОбъекты и массивы - ссылочные типы, при присваивании их переменной, копируется ссылка на массив или объект.\n\nПо настоящему скопировать эл-ты массива или св-ва объекта в другой массив или объект можно с помощью spread.\n\n```javascript\nconst person = {name: 'Maya',age: '37'];\n\nconst newPerson = {...person};\n```\n\n\n### Array Functions\n\nНе имеют собственного this, берут его из текущей области видимости.\n\n```javascriptame \nconst double = numbers.map((i) => i*2);\n\nconsole.log(numbers); // [1, 2, 3]\nconsole.log(double); // [2, 4, 6]\n```\n\n## The Basics\n\n### Build Workflow\n\n#### Зачем он нужен?\n\n* Оптимизировать код\n\n* Использовать все последние js фичи.\n\n* Повышает продуктивность разработчика. (CSS-autoprefixing, linting)\n\n\n#### Инструменты\n\n* Менеджер зависимостей (все доп. библиотеки (ReactDOM, например) и вспомогательные пакеты (Babel, например)). **npm** или **yarn**\n\n* Bundler (сборщик) - чтобы писать код разбитый на модули, а потом объединиить его в небольшое кол-во файлов, т.к. меньше кол-во запросов - оптимальнее для работы браузера. **Webpack**\n\n\n* Компилятор последних js фич. **Babel + Presets**\n\n* Development Server  - web server, запускаемый локально.\n\n\n\n#### Create React App\n\n[create-react-app github](https://github.com/facebook/create-react-app)\n\n```\nnpx create-react-app react-complete-guide --scripts-version 1.1.5\ncd react-complete-guide\nnpm start\n```\n\nIDE - автор использует Microsoft Studio Code\n\n\n**package.json** - зависимости проекта\n\nreact-scripts - содержит все инструменты, которые мы используем в build workflow\n\nСкрипты - \n * **start**  - запускает сервер для разработки и запускает собранный проект на нем, отслеживает изменения.\n * **build**  - собирает проект в отдельнцю папку, готовую к деплою.\n\n**public** - корневая папка сервера разработки\n\ncreate react app настроен для создания single page application, поэтому в нем может быть только один html файл\n\n**index.js** - рендерит компоноент App в html-элменент\n\nApp испортируется из файла App.js (.js опущен)\n\n\n**App.js** - содержит реакт-компонент\n\n### Sublime Settings\n\nВ Sublime надо для правильной подсветки:\n\n* установить Babel Snippets череp Package Control\n* View > Syntax > Babel > Javascript\nЕсли нет Babel в меню, установить Babel\n\nЧтобы один раз для всего проекта указать какие настройки использовать, нужен пакет Project Specific Syntax Settings.\n\n* Создать проект Project - Add Folder To Project\n* Project - Save Project As..\n* Открыть js файл; \n  View - Syntax - Babel - Javascript(Babel); \n  Правый клик - Project Specific Syntax - Copy syntax settings;\n  Вставить в файл проекта .sublime-project (открывается Project - Edit Project)\n\nЧтобы настройки применялись, надо открывать проект через Project - Open Project - выбрать файл project-name.sublime-project.\nДля этого надо сначала создать этот файл через Project - Create Project при открытой папке с проектом.\n\n\n\n### Component Basics\n\nМожно отрендерить несколько root components для разных react apps в одном проекте.\n\nКаждый реакт компонент должен рендерить HTML в DOM или возвращать код, который может быть отрендерен.\n\n### JSX\n\nJSX - это синтаксический сахар, он компилируется в вызов ф-ций React.createElement.\n\nВ JSX нельзя использовать слова, зарезервированные в js, например 'class'.\n\nJSX выражение внутри return должно содержать единственный корневой компонент.\n\n### Создание компонента\n\nПринято называть файлы с компонентами с большой буквы и помещать их в отдельную папку с таким же имененм.\n\n\n### Component Props\n\nМожно передаваить параметры в компоненты, как html-атрибуты.\n\nВсе атрибуты передаются в один аргумент компонента, который вляется объектом, а атрибуты - его св-ва. \nЕго можно назвать как угодно, но лучше - **props**.\n\n### Props.children\n\n - зарезервированное слово. Содержит любые эл-ты, которые содержаться внутри пользовательского компонента между <Component> и </Component>\n\n\n### State\n\n Св-во state можно добавлять в компоненты-классы. В то же время надо стараться как можно чаще использовать компоненты-ф-ции. Это потому что, если у слишком многих компонентов есть state, то приложение становится запутанным и трудно-поддерживаемым.\n\n state - зарезервированное слово, надо использовать именно его для хранения и управления внутренними данными компонента.\n\n Особенность state в том, что при его изменении React запускает рендеринг DOM с новыми свойствами.\n\n\n\n### Handling Events with Methods\n\nФ-цию обработчик задают, как метод компонента. Если сделать его стрелочной ф-цией, то this внутри него будет ссылаться на компонент. Если метод-обработчик - обычая ф-ция, то this при вызове из приложения будет undefined. Чтобы this ссылалось на компонент, надо передавая ссылку на обработчик привязать ее к компоненту:\n\n```javascirpt\n<button onClick = 'myClickHandler.bind(this)'\n```\n\n### To Which Events Can You Listen?\n\nIn the last lecture, we saw that you can react to the onClick event - but to which other events can you listen? You can find a list of supported events [here](https://reactjs.org/docs/events.html#supported-events).\n\n### Manipulating the State\n\nНадо вызывать \n\n```javascirpt\nthis.setState({})\n```\n\nпринимает объект, в котором указывают новые знаечения св-в state. Обновляет только те св-ва, которые указаны, не трогая другие.\n\nРеакт следит за state и props и обновляет нужные компоненты в DOM.\n\n\n### Using the useState() Hook for state manipulation.\n\nДо версии React 16.8 нельзя было использовать state в функциональных компонентах, только в компонентах-классах. И это устоявшийся способ разработки на реакт.\nС версии 16.8 возможно использовать функциональные компоненты для всего с помощью хуков. Это новый подход, его используют не все и неизвестно, что с ним будет в дальнейшем.\n\n\nХуки - это, по сути, коллекция ф-ций, предоставляемая React. И эти ф-ции можно использовать в функциональных компонентах.\n\nЧтобы использовать хуки надо импортироват их.\n\nuseState - хук, позволяющий управлять состоянием в функциональных компонентах.\n\n```javascript\nimport React, { useState } from 'react';\n```\n\nuseState всегда возвращает массив с двумя элементами:\n\n1. Текущее состояние.\n2. Функция, которая позволяет обновить состояние таким образом, что Реакт это увидит и перерендерит нужные компоненты.\n\nТекущее состояние, которое возвращает useState играет роль this.state, используемой в компонентах-классах.\nФункция, которую возвращает useState играет роль this.setState, используемой в компонентах-классах.\n\n### Различия исользования React Hooks и компонентов-классов.\n\nФ-ция для обновления состояния, возвращаемая useState, при вызове полностью заменяет текущее состояние своим аргументом. Поэтому надо вручную следить, чтобы вся информация из старого состояние попала в новое, иначе она потеряется.\n\n\n#### Решение проблемы\n\nИспользовать несколько вызовов useState, по одному для каждой переменной в состоянии. \nКаждая ф-ция useState будет возвращать свою ф-цию, которую надо использовать для изменения конкретной переменной.\n\n\n#### Stateless и Statefull Components\n\nStatefull (smart, container) - компоненты, имеющие состояние (как классы, так и ф-ции с хуками)\nStateless (dumb, presentational) - компоненты, без состояния\n\nХорошая практика - использовать как можно больше stateless компонентов. (В небольших приложениях - пара statefull, осатльные - stateless). Это облегчает сопровождение, так как вся логика собрана в одном месте и оттуда распространяется на все приложение.\n\n### Passing Method References Between Components\n\nЕсть метод, объявленный в каком-то компоненте. Как вызывать его в другом? \nНадо передать в компонент ссылку на метод, как значение атрибута.\n\nПередача:\n\n```javascript\n        <Person\n          name = {this.state.persons[2].name}\n          myClick = {this.switchNameHandler}\n        />\n```\n\nВызов:\n\n```javascript\n      <p onClick={props.myClick}>I'm a {props.name} and I'm {props.age} years old</p>\n```\n\nТаким образом можно передавать методы, меняющие state из родительского компонента в дочерние и дочерние компоненты смогут вызывать этот метод и повлиять на state родительского, к которому у них нет прямого доступа.\n\n\n#### Методы с параметрами\n\n```javascript\n  switchNameHandler = (newName) => {\n    console.log('Was Clicked');\n    console.log(this);\n    //DON'T DO THIS: this.state.persons[0].name = 'Maximillian';\n    this.setState({\n      persons: [\n        {name: newName, age: 28},\n        {name: 'Manu', age: 30},\n        {name: 'Stephany', age: 27}\n      ]\n    });\n  }\n```\n\nСпособы передачи параметров в дочерние компоненты:\n\n1. bind\n\n```javascript\n      <button onClick={this.switchNameHandler.bind(this,'Maximillian')}>Switch Name</button>\n```\n\n2.\n\n```javascript\n      <button onClick={() => this.switchNameHandler('Maximillian!!'))}>Switch Name</button>\n```\n\nЗдесь стрелочная ф-ция при клике будет возвращать результат выполнения this.switchNameHandler('Maximillian!!').\n\nСпособ 1 более эффективный, лучше использовать его. Потому что при втором способе React может перерендерить некоторые части в приложении слишком часто (???)\n\n\n### Two Way Binding\n\n```javascript\n      <input type=\"text\" onChange={props.myChanged} value={props.value}/>\n```\n\nЕсли убрать onChange, то input будет заблокирован, в него нельзя будет ввести значение, т.к. любое введенное значение будет заменятсья на {props.name}\n\n\n\n### Стили отдельным файлом\n\nФайл \\*.css лучше добавлять в папку компонента и называть так же, как комонент. Эти стили глобальные и видны всему приложению. Поэтому надо задать уникальный класс компоненту и использовать его, чтобы стили не смешивались.\n\nМы используем webpack и поэтому делаем import css-файлв в js файл компонента, чтобы webpack знал о его существовании обработал. \n\nWebpack динамически вставит этот css в тег <style></style> в head html-файла.\n\n### Инлайн-стили\n\nМожно записать стили в константу-объект внутри render() или в кастомном компоненте до return().\n\nЭто будет js, а не css, поэтому:\n* св-ва надо писать в camelCase или в кавычках; \n* значения свойств - в кавычках, через запятую.\n\n```javascript\n  render() {\n    const myStyle = {\n      backgroudColor: 'white',\n      font: 'inherit',\n      border: '1px solid blue',\n      padding: '8px'\n    };\n    return (\n      <div className=\"App\">\n        <button\n          style={myStyle}\n        >\n          Switch Name\n        </button>\n```\n\nВ инлайн-стилях трудно использовать все фичи css. Но плюс в том, что стили относятся только к конкретному элементу, который рендериться и не будут влиять на другие элементы. даже если они в том же компоненте.\n\nЕсть подход, позволяющий объединить плюсы обоих способов.\n\nВ кастомный компонент можно передавать инлайн стили, заданные в родительском компоненте через props.\n\n## Working with List and Conditionals\n\n### Rendering Content Conditionally\n\nВ  **JSX** внутри **{}** можно испльзовать **JS**.\nНо нельзя использовать сложные выражения, вроде **if {} else {}**.\nМожно испольщзовать тернарный оператор.\n\n```javascript\n        { this.state.boleanVal ?\n            <div>\n              ...\n            </div> : null\n        }\n```\n\nПосле ? тут неявно вызывается React.createElement('<div>...</div>')\n\nРеакт рендерит элементы внутри условия только если условие выполняется.\n\n### Handling Dynamic Content 'JS Way'\n\nКаждый раз, когда Реакт перерендерит компонент, он вызывает метод render(), а не только return().\nПоэтому внутри render() перед return() можно задать переменную, котороый присвоить значение с помощью JSX в зависимости от выполнения условий.\nВ retrun вставить **{имя_переменной}** и она отрендериться в этом  месте.\n\n\n\n```javascript\n  render() {\n\n    let persons = null;\n\n    if (this.state.showPersons) {\n      persons = (\n        <div>\n          <Person\n            style={myStyle}\n            name = {this.state.persons[0].name}\n            age = {this.state.persons[0].age}/>\n          <Person\n            name = {this.state.persons[1].name}\n            age = {this.state.persons[1].age}/>\n        </div>\n      );\n    }\n\n    return (\n      <div className=\"App\">\n        <h1>Hi, I am React App!</h1>\n        <div>\n          <button onClick={this.togglePersonsHandler}>Toggle Persons</button>\n        </div>\n        {persons}\n      </div>\n    );\n  }\n```\nЭто предпочтительный способ условного рендеринга.\n\n### Outputtting Lists, List and State\n\nЕдинственный источник информации в приложении - это state.\n\nЧтобы динамически выводить массив из state надо использовать map:\n\n```javascript\n  deletePersonHandler = (personIndex) => {\n    const persons = this.state.persons;\n    persons.splice(personIndex,1);\n    this.setState({persons: persons});\n  }\n\n  ...\n   render() {\n  ...\n\n  {this.state.persons.map(person => {\n    return <Person\n              myClick = {() => this.deletePersonHandler(index)}\n              name={person.name}\n              age={person.age} />\n  })}\n\n  ...\n```\n\nВ map можно передать стрелочную ф-цию, аргумент которой - эл-т массива. Она выполняется для каждого элемента.\n\nMap преобразет массив в другой массив и если эл-ты массива - jsx, то react попытается отрендерить их по-очереди.\n\n### Updating State Immutably\n\nНедостаток варианта изменения состояния, который показан выше в deletePersonHandler в том, что мы изменяем исходное состояние в операторе \n```javascript \n  persons.splice(personIndex,1);\n```\nЭто происходит, так массивы передаются по ссылке и persons - ссылка на исходный массив.\nЭто может приводить к ошибкам. Вообще нельзя менять состояние непосредственно, только через setState()\nЛучше сделать копию состояния и передавать эту копию в setState.\n\nСделать копию можно разными способами:\n\nМассив Вариант 1\n\n```javascript \n    const persons = this.state.persons.slice();\n```\n\nМассив Вариант 2\n\n```javascript \n    const persons = [...this.state.persons];\n```\nспред-оператор разбивает исходный массив на эл-ты, которые потом собираются в новый массив.\n\nОбъект Вариант 1\n\n```javascript \n    const person = {\n      ...this.state.persons[personIndex]\n    }\n```\n\nОбъект Вариант 2\n\n```javascript \n    const person = Object.assign({},this.state.persons[personIndex]);\n```\n\nНо эти способы не производят глубокого копирования. Если в массиве или объекте, который копируем есть вложенные массивы или объекты, то они передадутся по сслыке. Чтобы полностью скопировать такой объект, надо вручную произвести глубокое кропирование. \n\n[https://academind.com/learn/javascript/reference-vs-primitive-values/](https://academind.com/learn/javascript/reference-vs-primitive-values/)\n\n[О глубоком копировании](https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns/#immutable-update-patterns)\n\n\n### Lists and Keys\n\nKey - важное свойство, которое надо добавлять всегда при работе со списками данных. Key помогает Реакту эффективно обновлять списки. Без него Реакт обнвляет весь список при обновлении одного эл-та, а с key перерендерит только \nизмененные эл-ты списка.\n\nВ key надо передавать уникальный id эл-та списка. Часто он берется из БД. Значение index массива не очень подходит, т.к. при изменении массива могут меняться и id эл-тов и тогда index не очень поможет Реакт. Но если нет других вариантов, то лучше index, чем ничего.\n\n## Styling React Components & Elements\n\nПроблемы:\n\n1. Инайн-стили ограничены одним эл-том, но нельзя использовать псевдоэл-ты и некоторые другие фичи css. Можно испортировать css-файл, в котором можно использовать все фичи css, но тогда стили будут глобальные. \nКак объединиить плюсы обоих подходов?\n2. Как менять стили динамически? Т.е. например делать разные стили при разных состояниях приложения.\n\n### Setting Styles Dynamically\n\nДля инлайн-стилей мы можем изменить переменную в которую записан стиль с помощью js в методe render перед return, и тогда в return()  в jsx, когда  мы вызовем ее в {}, в ней будет измененное значение.\n\n\n```javascript \n  render() {\n    const myStyle = {\n      backgroundColor: 'green',\n      color: 'white',\n      font: 'inherit',\n      border: '1px solid blue',\n      padding: '8px',\n      cursor: 'pointer'\n    };\n  ...\n  if (this.state.showPersons) {\n  ...\n  myStyle.backgroundColor = 'red';\n  }\n  return (\n    ...\n    <button\n      style={myStyle}\n      onClick={this.togglePersonsHandler}>\n        Toggle Persons\n    </button>\n    ...\n    );\n```\n\n### Setting Class Names Dynamically\n\nС классами можно также обращаться как с переменными\n\n```javascript \n  render() {\n    let classes = [];\n\n    if (this.state.persons.length <= 2) {\n        classes.push('red');\n    }\n\n    if (this.state.persons.length <= 1) {\n        classes.push('bold');\n    }\n    ...\n    return (\n        <p className = {classes.join(' ')}>This is really working!</p>\n    );\n```\n\n### Adding and Using Radium\n\nradium - npm пакет, который позволяет использовать медиа-запросы и псевдоселекторы в инлайн-стилях\n\nВ папке проекта:\n\n```\nnpm install --save radium\n```\n\nВ файле, где стили:\n\n```javascript\nimport Raduim from 'radium';\n...\nexport default Radium(App);\n\n```\n\\- в экспорте мы оборачиваем app в radium, потому что radium - это higher order component\n\n\n```javascript\n  render() {\n    const myStyle = {\n      backgroundColor: 'green',\n      color: 'white',\n      font: 'inherit',\n      ':hover': {\n        backgroundColor: 'lightgreen',\n        color: 'black'\n      }\n    };\n...\n if (this.state.showPersons) {\n      myStyle.backgroundColor = 'red';\n      myStyle[':hover'] = {\n        backgroundColor: 'lightred'\n      }\n\n  }\n```\n\nЧтобы использовать медмазапросы, кейфреймы надо экспортировать еще один компонент Radium - {StyleRoot}. Иначе получим ошибку: ``' To use plugins requiring `addCSS` (e.g. keyframes, media queries), please wrap your application in the StyleRoot component. Component name: `Object`.'``\n\nApp.js:\n\n```javascript\nimport Raduim, {StyleRoot} from 'radium';\n...\nreturn(\n  <StyleRoot>\n  ...\n  </StyleRoot>\n)\n```\n\n### Styled Components\n\n[https://styled-components.com/](https://styled-components.com/)\n\n```\nnpm install --save styled-components\n```\n\n```javascript\nimport styled from 'styled-components';\n```\n```javascript\nstyled.div``\n```\nвызываем соответствуюий метод для каждого html-элемента. Внутри `` - строка-аргумент для метода (это js синтаксис)\nВсе такие методы возвращают реакт-компонент, поэтому, если запихивать его в переменную, ее нужно называть с большой буквы.\n\n\n```javascript\nconst StyledDiv =  styled.div`\n      width: 60%;\n      margin: 16px auto;\n      border: 1px solid #eee;\n      box-shadow: 0 2px 3px #ccc;\n      padding: 16px;\n      text-align: center;\n\n      &:hover: {\n        background-color: lightgreen;\n        color: black;\n      }\n\n      @media(min-width: 500px) {\n        width: 450px;\n      }\n    `;\n\n...\nconst person = (props) => {\n  return (\n        <StyledDiv>\n        ...\n        </StyledDiv>\n  )\n}\n```\nStyled components создают css-классы и добавляют css в head внутри тега <style></style>. Т.е. это не инлайн-стили, что хорошо. (Можно использовать css-каскад (иерархию стилей))\n\nМожно определить styled components в отдельном файле и использовать их потом в нескольких файлах.\n\n### Styled Components & Dynamic Styles\n\nПередать в компонент в качестве параметра переменную, отражающую состояние родительского объекта. И использовать props в аргументе styled.components\n\n```javascript\n  const StyledButton = styled.button`\n    background-color: ${props => props.alt ? 'green' : 'red'};\n  `;\n\n    <StyledButton alt = {this.state.showPersons} onClick={this.togglePersonsHandler}>\n        Toggle Persons\n    </StyledButton>\n```\n\nStyled Components создаст дополнительные классы для разных условий (разных значений props) и будет подставлять нужный класс.\n\n\"-\" - CSS in JS - следовательно может плохо работать подсветка в IDE и другие фичи, облегчающие написание кода\n\n### CSS Modules\n\n[https://github.com/css-modules/css-modules](https://github.com/css-modules/css-modules)\n[Using CSS Modules in create-react-app Projects](https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2)\n\nСтили в css-файлах, но область видимости ограничена одним модулем.\n\nНадо настроить конфигурацию и процесс настройки отличается для версий react-scripts 1.* и версий react-script 2.*\n\n```\nnpm run eject\n```\n\\- дает доступ к конфигам среды разработки. (webpack и пр.)\n\nПоявится папка config, в которой есть файлы *webpack.config.dev.js* и *webpack.config.prod.js*.\n\nВ этих файлах надо изменить:\n\n```javascript\n    {\n      test: /\\.css$/,\n      use: [\n        require.resolve('style-loader'),\n        {\n          loader: require.resolve('css-loader'),\n          options: {\n            importLoaders: 1,\n            modules: true,\n            localIdentName: '[name]__[local]__[hash:base64:5]',\n          },\n        },\n    ...\n```\nВ js-файлах компонентов:\n\n```javascript\nimport classes from './App.css';\n```\n\n\\- classes - любое имя. Этото объект потом использовать в jsx.\n\n\n```javascript\n  render() {\n    ...\n    let assignedClasses = [];\n\n    if (this.state.persons.length <= 2) {\n        assignedClasses.push(classes.red);\n    }\n\n    if (this.state.persons.length <= 1) {\n        assignedClasses.push(classes.bold);\n    }\n\n    return (\n        <div className={classes.App}>\n          <h1>Hi, I am React App!</h1>\n          <p className = {assignedClasses.join(' ')}>This is really working!</p>\n          ...\n        </div>\n   );\n    ...\n}\n```\n\nПри импорте css-modules берет классы из css, дает им уникальные имена и связывает эти новые имена с исходными именами классов в файле. К исходным именам можно обращаться как к свойствам импортированного объекта. (classes.App, например)\n\nМожно сделать глобальный селектор:\n\n```css\n:global .Post { ... } \n```\nДля версии react-scripts версии 2.* и  выше, можно не делать eject и правки конфигов, достаточно назвать css-файл name.module.css.\n\n## Debugging React Apps\n\n\n### Dev Tools\n\n[Chrome Devtool Debugging](https://developers.google.com/web/tools/chrome-devtools/javascript/)\n\n**Chrome - Sources**\n0. Найти App.js \n0. Найти метод, в котором предполагается ошибка\n0. Поставить breakpoint, щелкнув по номеру строки\n0. Запустить выполнение и когда оно остановится на breakpoint, надать step-in. Наведя мышку на переменную, можно увидеть ее значение.\n\n\n**Firefox - Debugger**\nсм. Chrome\n\n\n### React Developer Tools\n\n\\- расширение для браузера.\n\nВидно компонент, его параметры, его состояние.\n\nИконка-жучок - Log component data to the conslole.\n\n\n\\- можно посмотреть детальное описание в консоли.\n\n <> - View Source of Element\n\n Иконка шестеренки - Settings\n\n Можно менять значения свойств state прямо в тулзе.\n\n### Using Error Boundaries\n\n[https://reactjs.org/docs/error-boundaries.html](https://reactjs.org/docs/error-boundaries.html)\n\n Если мы знаем, что во время выполнения может произойти ошибка, то надо обработать ошибку и выдать какое-то понятное сообщение.\n\n Начиная с Реакт 1ю6 можно создавать error boundary compnonents.\n\n```javascript\nimport React, { Component } from 'react';\n\nclass ErrorBoundary extends Component {\n  state = {\n    hasError: false,\n    errorMessage: ''\n  }\n\n  componentDidCatch(error,info) => {\n    this.setState({\n      hasError: true,\n      errorMessage: error\n    })\n  }\n\n  render() {\n    if (this.state.hasError) {\n      return (<h1>Something went wrong: {this.state.errorMessage}</h1>);\n    } else {\n      return (this.props.children);\n    }\n  }\n}\n\nexport default ErrorBoundary;\n```\n\n\nМетод **componentDidCatch** сработает, когда компонент, обернутый в error boundary компонент, выдаст ошибку.\n\n**this.props.children** - то, что мы обернули в error boundary component\n\nВ return в JSX обернем компонент в error boundary component:\n\n```javascript\nreturn  <ErrorBoundary>\n          <Person/>\n        </ErrorBoundary>\n```\n\nПри этом в случае списков, key надо перенести в ErrorBoundary, т.к. это теперь внешний эл-т.\n\nНе надо использовать этот метод для каждого компонента, только для тех, в которых может возникнуть ошибка во врмея выпонения, которую нельзя предотвратить.\n\n\n## Diving Deeper into Components & React Internals\n\n### Better Project Structure\n\nМожно выделять в отдельный компонент элементы, разметка и поведение которыx переиспользуются много раз в приложении.\n\nОбычно компоненты-контейнеры, управляющие состоянием, вроде app.js не должны рендерить слишком много. В их render - методе не должно быть много JSX.\n\nМожно создать отдельные компоненты для списков, в них передавать список и делать map и ренденринг списка.\n\n### Splitting an App Into Components\n\nСтили относящиеся к коспоненту не должны сожержать селекторы других компонентов - родительских например. Иначе не сработает, т.е. уникальные идентификаторы, сгенерированные css-modules не будут совпадать.\n\n### Comparing Stateless and Stateful Components\n\nStatefull, компоненты-контейнеры - содержат state и изменяют его (с помощью setState для классов и useState-хука для ф-ций). До версии 16.8 stateful могли быт только копомненты-классы. Начиная с 16.8 - и компоненты-функции с помощью хуков.\n\nStateless, dumb, презенетационные - не содержат state, могут влиять на state только с помощью переданных в параметры методов родительского statefull компонента.\n\nБольшинство компонетов в приложении должны быть презентанционными. Это делает приложение легко управляемым, потому что есть предсказуемый поток данных, всегда понятно, где изменяется состояние, т.к. компонентов с состоянием не много.\n\nА презентационные компоненты нужны только для рендеринга интерфейса и зависят только от props, поэтому их работа предсказуема, их можно поместить куда угодно в приложение и они будут работать, если задать им правильные входные данные.\n\nВ итоге легче сопровождать приложение.\n\n### Class-based vs Functional Components\n\n***Class-based***\n\n```\nclass XY extends Component\n```\n\n* extneds объект Component из React\n* могут содержать state, изменяют state с помощью setState()\n* могут использовать LifeCycle Hooks\n* для доступа к state,props, методам надо использовать клчевое слово 'this', т.к. props и пр. - это св-ва объекта.\n\n***Functional***\n\n```\nconst XY = props => {}\n```\n\n* ф-ции, которые принимают параметры и возвращают JSX\n* могут содержать state и изменять его с помощью useState() (это хук, хуки доступны с версии 16.8)\n* НЕ могут использовать LifeCycle Hooks\n* можно непосредственно обращаться к props, т.к. это просто аргумент ф-ции\n\nДаже в последних версиях Реакт можно использовать classs-based components только для statfull, а fucntional components для stateless компонентов. Чтобы разница между ними была наглядней.\n\n\n### class Component Lifecycle Overview\n\n\\- доступен только в компонентах-класса\n\nЕсть набор методов, которые можно вызвать в компоненте и они сработают в определенные моменты времени.\n\nИх можно использовать, например, чтобы вставить данные, полученные по сети, или почистить что-нибудь перед удалением кмопонента из DOM.\n\nLifecycle Hooks можно разделить на те, которые вызываются при рендеринге компонента первый раз и на те, которые вызываются, когда в компоненте что-то меняется.\n\n**Lifecycle Hooks при создании компонента:**\n\n1. constructor(props)\n\nНа самом деле это не Lifecycle Hook, а особенность ES6 классов. Констурктор получает props компонента. Если мы пишем свой constructor, то в нем надо вызывать super(props).\nИспользуется, чтобы сделать что-то для инициализации, например, задать начальное состояние (это может быть нужно, если начальное состояние зависит от параметров). Нельзя в нем делать что-то, что вызывает side effects (нампример, посылать http-запрос, сохранять что-то в local storage, посылать google analytics), потому что эти действия могут вызывать лишний re-rendering и понизить производительность приложения.\n\nНа самом деле state, который мы орпеделяем в class-based component неявно вызывается в constructor(). Можно поместить задание state в constructor(), если мы вызовем его явно.\n\n```javascript\n  constructor(props) {\n    super(props);\n    this.state = {\n    persons: [\n      {id: 'asdaf1', name: 'Max', age: 28},\n      {id: 'asdad3', name: 'Manu', age: 30},\n    ],\n    otherState: 'some other value',\n  }\n}\n```\n\n2. getDerivedStateFromProps(props, state)\n\nПоявился в Реакт 16.3.\nИспользуется редко, когда при изменении параметров, надо изменить внутреннее состояние компонента. \nНельзя в нем делать, то, что вызывает side effects.\nStatic method.\nДолжен возвращать измененное state.\n\n```javascript\n  static getDerivedStateFromProps(props, state) {\n    console.log('[App.js] getDerivedStateFromProps', props);\n    return state;\n  }\n```\n\nИспользуется например в формах, в компоненте, который проверяет пользовательский ввод и его входные параметры изменяются, когда пользователь что-то вводит в форму.\n\n3. render()\n\n - преобразует JSX в HTML\n\n В нем нельзя отправлять http-запросы, устанавливать timeouts, ничего, что может заблокировать rendering.\n Если запускается render, это еще не значит, что ре-рендериться реальный DOM. Он запускается, когда Реакт обновляет виртуальный DOM и смотрит, что надо перерендерить в реале.\n\n4. render child components\n\n5. componentDidMount()\n\nОчень важный lifecycle hook. Используется часто. В нем можно вызывать side effects. (HTTP запросы, например)\nВ нем не надо менять состояние и вызывать setState() (запускает re-rendering), кроме некоторых случаев, например, когда в блоке then промиса после отправки htttp реквеста, т.е. можно изменить что-то в будущем, наnпример, когда придет запрос. Но синхронно измененять state нельзя, т.е. нельзя сразу после того, как будет вызован componentDidMount().\n\n* componentWillMount() - будет скоро удален, хотя пока можно использовать. Вместо него можно использовать getDerivedStateFromProps во многих случаях.\n\n\n\n### Component Update Lifecycle (for props Changes)\n\n1. getDerivedStateFromProps(props, state)\n\n2. shouldComponentUpdate(nextProps, nextState)\n\nПозволяет отменить процесс обновления.\nИспользуется для Performance Optimization (оптимизации производительности).\nИспользовать осторожно, т.к. можно повредить компонент при неправильном прерывании.\n\nДолжен возвращать true, если надо продолжить обновление и false, если надо остановить.\n\n3. render()\n\n4. Update Child Components Props\n\nЕсли дочерние компоненты получают новые параметры, они тоже проходят через lifecycle обновления.\n\n5. getSnapshopBeforeUpdate(prevProps, prevState)\n\nИспользуется редко.\nИспользуется для last-minute DOM операций, но не для обновдения DOM. Можно использовать, например, для получения текущей позиции скролла. когда в DOM появляются новые элементы, но надо сохранить пользователя в той же позиции. Тогда с помощью этого метода можно получить состояние системы перед обновдением и оттуда взять все что надо.\n\nОн сохраняет данные, которые потом передаются в componentDidUpdate() в качестве третьего аргумента и там их можно использовать.\n\n```javascript\n  getSnapshotBeforeUpdate(prevProps, prevState) {\n    console.log('[Persons.js] getSnapshotBeforeUpdate');\n    return {message: 'Snapshot!'};\n  }\n\n  componentDidUpdate(prevProps, prevState, snapshot) {\n    console.log('[Persons.js] componentDidUpdate');\n    console.log(snapshot);\n  }\n```\n\n6. componentDidUpdate()\n\nОбновление закончено. Можно вызывать side-effects.\nНадо следить за тем, чтобы не вызвать бесконечный цикл. Если, например, http-запрос вызовет обновление параметров.\nНельзя синхронно обновлять состояние и вызывать setState() вне then блока промиса, ожидающего запрос или другой асинхронной задачи.\nИспользуется чаще всего, когда, например, надо получить данные с сервера.\n\nУстаревшие методы:\n\ncomponentWillReceiveProps(props) {}\n\ncomponentWillUpdate() {}\n\n\\- больше не используются так как оказались не удобными и часто использовались не правильно. Но могут работать в старых приложениях.\n\n### Using useEffect() in Functional Components (Аналог Lifecycle Hooks в Class-based components)\n\n```javascript\nimport React, { useEffect } from 'react';\n\nconst cockpit = (props) => {\n\n  useEffect(() => {\n    console.log('[Cockpit.js] useEffect');\n  })\n\n  ...\n}\n```\n\nЕго аргумент - функция, которая запускается каждый цикл рендеринга.\nВ нем можно делать все, что и в componentDidUpdate и в componentDidMount (http-запросы и пр.)\n\nВместо getDerivedStateFromProps можно запустить useState() и в нем обновить состояние для новых значений props.\n\n### Controlling the useEffect() Behavior\n\n\nЧто если мы не хотим, чтобы useEffect() запускался при каждом цикле ре-рендеринга?\nНапример, мы посылаем даннные в облако, только при изменении persons.\nДля этого надо добавить второй аргумент в useEffect() - массив со всеми данными, которые используются в этой ф-ции.\nМожно использовать useEffect несколько раз для разных данных.\n\n```javascript\n  useEffect(() => {\n    console.log('[Cockpit.js] useEffect');\n    setTimeout(() => {\n      alert('Send data to cloud');\n    },1000)},\n    [props.persons]\n  );\n```\n\\- setTimeout() - здесь для эмуляции задержки перед возвращением http-запроса\n\nЕсли мы хотим выподнить что-то только при создании компонента, то надо передать вторым аргументом пустой массив. Это значит у useEffect() нет зависимостей при изменеиии которых он должен перезапускатьсяи следовательно он запустится только в первый раз.\n\n```javascript\n  useEffect(() => {\n    console.log('[Cockpit.js] useEffect');\n    setTimeout(() => {\n      alert('Send data to cloud');\n    },1000)},\n    []\n  );\n```\n\n\n### Cleaning up with Lifecycle Hooks & useEffect()\n\nКогда элемент удаляется из DOM надо почистить лишнее - например eventListenres. Это важно в компоентах, которые подсоединяются к серверу.\n\n*** В class-based components: ***\n\ncomponentWillUnmount\n\nЗапускается перед тем как компонент удаляется из DOM.\n\n*** В  functional components ***\n\nuseEffect()\n\nЕсли в useEffect со вторым аргументом - пустым массивом, в первый аргумент (ф-цию) добавитьreturn, который возвращает функцию, то эта ф-ция будет запущена перед основной ф-ции useEffect, но только после первого цикла рендеринга. В итоге она будет запущена после удаления компонента.\n\n```javascript\n  useEffect(() => {\n      console.log('[Cockpit.js] useEffect');\n      setTimeout(() => {\n        alert('Send data to cloud');\n      },1000);\n      return ()=>{\n        console.log('[Cockpit.js] Clean up work in UseEffect()');\n      };\n    },\n    []\n  );\n```\n\nЕсли не передавать второй аргумент, то ф-ция из return будет запускаться каждый раз перед последующим запуском useEffect.\nЭто можно использовать для отмены операций, которые должны быть отмпнены, когда компонент ре-рендериться, точнее, после того, как он обновлен.\n\n\n### Cleanup Work with useEffect() - Example\n\nЕсли в предыдущем примере useEffect() сразу после загрузки приложения удалить компонент, то alert все равно появится. Его можно отменить:\n\n```javascript\n  useEffect(() => {\n      console.log('[Cockpit.js] useEffect');\n      const timer = setTimeout(() => {\n        alert('Send data to cloud');\n      },1000);\n      return () => {\n        clearTimeout(timer);\n        console.log('[Cockpit.js] Clean up work in UseEffect()');\n      };\n    }, []\n  );\n```\n### Using shouldComponentUpdate for Optimization\n\nПо умолчанию, когда в родительском компоненте что-то меняется, запускается метод render() и перерендерится все, что есть в этом методе. В том числе те, компоненты, которые не были затронуты изменениями.\n(Имеется ввиду перерендерится виртуальный DOM, который Реакт строит, чтобы потом сравнить с реальным DOM и обновить то, что изменилось в реальном DOMе)\n\nМожно предотвратить рендеринг компонента, если в shouldComponentUpdate проверить, что изменилось.\n\n```javascript\n  shouldComponentUpdate(nextProps, nextState) {\n    console.log('[Persons.js] shouldComponentUpdate');\n    if (nextProps.persons === this.props.persons) {\n      return false;\n    }\n    return true;\n  }\n```\nСравнение массивов тут работает, потому что в app.js при изменении эл-та persons мы создаем новый массив, копируя старый, изменяем в нем что надо и присваиваем св-ву persons новый измененый массив. Поэтому ссылка на массив всегда новая при любых изменениях в нем.\n\nhttps://academind.com/learn/javascript/reference-vs-primitive-values/\n\n\nВ Chrome можно посмотреть вкладку Rendering - Paint Flash - подсвечивает зеленым то, что рендерится в реальном DOM.\n\n\n### Optimizing Functional Components with React.memo()\n\n```javascript\nexport default React.memo(cockpit);\n```\n\nРеакт делает снимок компонента и ререндерит его только если изменились входные параметры. Если родительские компонент хочет перерендерить наш компонент, но входные параметры не изменились, Реакт отдает родительскому снимок компонента.\n\n\nВ нашемслучае компонент все равно перерендеритс при изменениии persons.name, потому что мы передаем в него persons, хотя фактически мы проверяем только persons.length. Если передавать в качестве параметра this.persons.length, то он будет изменяться только при изменении persons.lenght.\n\nmemo делает только поверхностное сранвение. Чтобы сравнить вручную, надо использовать сторой параметр memo - ф-цию сравнения.\nВ отличие от shouldComponentUpdate эта ф-ция должна вернуть false, чтобы компонет перерендерился.\n\n```javascript\nfunction MyComponent(props) {\n  /* render using props */\n}\nfunction areEqual(prevProps, nextProps) {\n  /*\n  return true if passing nextProps to render would return\n  the same result as passing prevProps to render,\n  otherwise return false\n  */\n}\nexport default React.memo(MyComponent, areEqual);\n```\nhttps://reactjs.org/docs/react-api.html#reactmemo\n\nmemo не влияет на state или context, сравнивает только props\n\n### When should you optimize?\n\nПроверять обновление компонента с помощью shouldComponentUpdate или React.memo надо только если компонент не всегда должен обновляться при обновлении родителя. Бывают компоненты, которые при обновлении родителя обнвляются всегда или почти всегда, в них такие проверки не нужны, т.к. это выполненине лишнего кода и будеыт только замедлять приложение.\n\n###  PureComponents instead of shouldComponentUpdate\n\nЕсли в class-based component мы используем shouldComponentUpdate только для проверки не изменился ли каждый параметр, то можно вместо использования shouldComponentUpdate унаследовать класс от PureComponents.\n\n```javascript\nimport React, {PureComponent} from 'react';\n\nclass Persons extends PureComponent {\n  ...\n}\n```\n### How React Updates the DOM\n\n1.render()\n\n\\- этот метод не рендерить сразу в реальный DOM. Он предлагает конечный вариант HTML, но этот вариант может соврадать с тем, что уже есть в реальном DOM. Поэтому мы используем shouldComponentUpdate. Но даже если мы его не используем или несмотря на изменение переменной результат тот же, что и уже есть, все равно перендеринга реального DOM сразу не произойдет.\n\n* Сначала происходит сравнение виртуальных DOM - старого и нового. Реакт хранит 2 виртуальных DOM. \n* Если найдены различия, Реакт обновляет реальный DOM, но не полностью. Рендерятся только места, которые изменились. Например, если изменился текст конопки, Реакт обновляет только текст и не производит ре-рендеринг всей кнопки. \n* Если различий не найдено,  Реакт не трогает раельный DOM.\n\n(Это относится и к компонентам-функциям, возвращающим JSX)\n\n\n\n### Rendering Adjacent JSX Elements\n\n* JSX, который возвращают компоненты, должен быть упакован в один внешний элемент. \n* Исключение - списки, в которых рендерятся несколько последовательных элементов, но у каждого должно быть свойство key, чтобы Реакт мог эффективно изменять и перемещать их.\n* 1. Можно обернуть JSX в return в [] и после каждого элемента поставить запятую. Тогда Реакт воспримет это все как список и будт требовать key.\n\n```javascript\n    return [\n        <p key=\"i1\" onClick={this.props.myClick}>I'm a {this.props.name} and I'm {this.props.age} years old</p>,\n        <div key=\"i2\">{this.props.children}</div>,\n        <input key=\"i3\" type=\"text\" onChange={this.props.myChanged} value={this.props.name}/>\n    ]\n```\n\n* 2. Можно создать компонент-обертку, которая не будет рендериться.\n\n```javascript\nimport React from 'react';\n\nconst aux = props => props.children;\n\nexport default aux;\n```\n\n\\- тут можно даже не использовать import, т.к. мы не используем JSX, только JS.\n\n```javascript\n    return (\n      <Aux>\n        <p onClick={this.props.myClick}>I'm a {this.props.name} and I'm {this.props.age} years old</p>\n        <div >{this.props.children}</div>\n        <input type=\"text\" onChange={this.props.myChanged} value={this.props.name}/>\n      </Aux>\n    )\n```\n\nprops.children будет ссылаться на все содержимое между открывающимся и закрывающимся тегом элемента. Требование оборачивать все в один внений элемент - это требование JS, т.к. все это подставляется в React.createElement и там должен быть только один элемент.\n\n\n### Using React.Fragment\n\nВ Реакт >= 16.2 есть встроенный 'aux' компонет (обертка, которая не рендерится).\n\n```javascript\nimport React, {Fragment} from 'react';\n\n    return (\n      <Fragment>\n        <p onClick={this.props.myClick}>I'm a {this.props.name} and I'm {this.props.age} years old</p>\n        <div >{this.props.children}</div>\n        <input type=\"text\" onChange={this.props.myChanged} value={this.props.name}/>\n      </Fragment>\n    )\n```\n\n### Higher Order Components (HOC) - Introduction\n\n\\- это компонент, который не содержит собственную логику, стили, разметку, а оборачивает другой компонент, может добавлять в другой компонент какую-то логику, стили, разметку.\nИх принято называть начиная с With\nТаким образом создавать лучше компоненты, которые добавляют html и стили.\n\nПримеры:\n\n1.Aux - см.выше\n\n2.Компонент, который добавляет класс. (Хотя он не особо нужен в реале, просто пример)\n\n### Another Form of HOCs\n\nВ другом варианте HOC component принимает в качестве первого аргумента - WrappedComponent (должен начинаться с заглавной), второй и последующие аргументы зависят от того, какие еще входные данные нужны  этому hoc component.\n\nВ этом случае HOC component - обычная js-функция, а не fucntional component, потому что нет props и она не возвращает JSX.\nНо эта ф-ция должна возвращать functional component.\n\n```javascript\nimport React from 'react';\n\nconst withClass = (WrappedComponent, className) => {\n  return props => (\n    <div className = {className}>\n      <WrappedComponent />\n    </div>\n    );\n};\n\nexport default withClass;\n```\n\nИмпортируем ее в переменную с маленькой буквы, потому что это не компонент, а ф-ция возвращающая компонент.\nИ в вызываем ее с аргументом - нужным компонентом.\n\n```javascript\nimport withClass from '../hoc/WithClass';\n...\nexport default withClass(App,classes.App);\n```\n\nЭтот способ больше подходит для компонентов, которые вносят какую-то логику.\n\n### Passing Unknown Props\n\nПри экспорте компонента, обернутого в HOC, мы экспортируем результат выполнения hoc, и все переменные, которые мы передаем в компонент (который потом где-то импортировали) попадают в props функции, возвращаемой hoc. Реакт автоматически формирует изо всех аргументов, переданных в компонент, объект props со свойствами, каждое из которых - одна переданная переменная.\nЧтобы передать список аргкментов, надо использовать {...props}\n\n```javascript\nconst withClass = (WrappedComponent, className) => {\n  return props => (\n    <div className = {className}>\n      <WrappedComponent {...props} />\n    </div>\n    );\n};\n```\n\n### Setting State Correctly\n\nДля class-based components.\n\nНеправильный вариант\n\n```javascript\n   this.setState({ persons: persons, changeCounter: this.state.changeCounter + 1 })\n```\n\nМы вызываем setState() синхронно и React ставит ее в очередт и выполняет, когда появятся ресурсы. Это может происходить не сразу для больших приложений. Поэтому this.state, на которое мы ссылаемся, может быть не самым последним предыдущим состоянием. Это может быть более старое состояние. setState может вызываться почти одновременно в разных частях приложения и setState, который вызван поздннее, может выполниться раньше и получить неактуальные данные в this.state.\n\nЭто играет роль только для обновления состояния значениями, которые зависят от старого состояния. Если новые значения - это пользовательский ввод и не зависят от предыдущего состояния, то не страшно.\n\n```javascript\n    this.setState(\n      (prevState, props) => {\n      return { persons: persons,\n          changeCounter: prevState.changeCounter + 1\n        }\n    });\n```\n\nЭто best practice для вызвова setState, когда оно зависит от предыдущего сотояния.\n\nОбъяснение почему так - https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973\nhttps://css-tricks.com/understanding-react-setstate/\n\nПохоже это потому, что так setState() будут всегда вызываться последовательно в нужном порядке.\n\n### Using PropTypes\n\nХорошо бы по компоненту было понятно, какие параметры он использует и какого они типа. И в случае передачи неподоходящих параметров выдавать ошибку.\n\nЭто можно сделат с помощью дополнительного пакета.\n\n```javascript\nnpm install --save prop-types\n```\n\n\\- этот пакет часть Реакт, но не в ядре и устанавливается опционально.\n\n```javascript\nimport PropTypes from 'prop-types';\n\nPerson.propTypes = {\n  myClick: PropTypes.func,\n  name: PropTypes.string,\n  age: PropTypes.number,\n  myChanged: PropTypes.func\n};\n```\nБлагодаря этому пакету, Реакт в режиме разработки будет следить, чтобы передаваемые параметры были правильными.\n\nhttps://ru.reactjs.org/docs/typechecking-with-proptypes.html\n\n### Using Refs\n\nК любому html-элементу можно добавить ключевое слово ref.\n\n1. Анонимная ф-ция\n\n```javascript\n    return (\n      <Aux>\n        <input\n          type=\"text\"\n          ref = {() => {(inputEl) => {this.inputELement = inputEL}}\n          onChange={this.props.myChanged}\n          value={this.props.name}/>\n      </Aux>\n    )\n```\n\nЕсли передать в ref функцию, то в качестве первого аргумента в нее передана ссылка на элемент. И можно с помощью this присвоить ее свойству компонента и использовать где угодно в приложении.\n\n```javascript\n  componentDidMount() {\n    this.inputELement.focus();\n  }\n```\n\n2. Начиная с версии 16.3.\n\n```javascript\n  constructor(props) {\n    super(props);\n    this.inputElementRef = React.createRef();\n  }\n  ...\n  componentDidMount() {\n    this.inputElementRef.current.focus();\n  }\n  ...\n    return (\n      <Aux>\n        <input\n          type=\"text\"\n          ref = {this.inputElementRef}\n          onChange={this.props.myChanged}\n          value={this.props.name}/>\n      </Aux>\n    )\n```\n\n### Refs with React Hooks\n\nВ functional component можно использовать ref только в варианте 2.\n\n```javascript\n  const toggleBtnRef = useRef(null);\n\n  useEffect(() => {\n      toggleBtnRef.current.click();\n    }, []\n  );\n ...\n   return (\n    <div>\n      <h1>{props.title}</h1>\n      <button\n        ref = {toggleBtnRef}\n        className = {btnClass.join(' ')}\n        onClick={props.clicked}>\n          Toggle Persons\n      </button>\n    </div>\n  );\n```\n\n### Understanding Prop Chain Problems\n\nПозволяет избежать длинной цепочки передачи параметров\n\nДопустим мы изменяем состояние в одном компоненте, причем состояние должно отражаться в компоненте, который непосредственно не вызывается в компоненте-контейнере. Оно тогда передается через другой компонент. Это не очень удобно.\nЕсть фича Context, которая помогает пропустить промежуточные компоненты при переаче параметра во вложенный.\n\n### Using the Context API\n\n```javascript\nimport React from 'react';\n\nconst authContext = React.createContext({});\n\nexport default authContext;\n```\n\nContext - по сути глобально доступный js объект, но где именно он доступен решаем мы. Его значением может быть не только объект, но и массив, строка, число. Он используется для передачи параметров между компонентами без использования props.\nМожно инициализировать в context начальные значения, чтобы потом работало автодополнение в IDE, но не обязательно. Значения по умолчанию будут передаваться, если других значений не будет задано.\n\n\nВ компоненте, из которого передаем значения context:\n```javascript\nimport AuthContext from '../context/auth-context.js';\n...\n    return (\n        <Aux>\n        <button onClick = {this.removeCockpit}>Remove Cockpit</button>\n          <AuthContext.Provider value={{\n            authenticated: this.state.authenticated,\n            login: this.loginHandler\n            }}>\n            {cockpit}\n            {persons}\n          </AuthContext.Provider>\n        </Aux>\n    );\n```\n\nИмпортированный компонент с context должен оборачивать все компоненты в которых мы хотим иметь к нему доступ.\n\nВ компоненте, в который передаем context:\n```javascript\nimport AuthContext from '../../../context/auth-context';\n...\n    return (\n      <Aux>\n        <AuthContext.Consumer>\n          {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Please log in!</p>}\n        </AuthContext.Consumer>\n        <p onClick={this.props.myClick}>I'm a {this.props.name} and I'm {this.props.age} years old</p>\n        <div >{this.props.children}</div>\n        <input\n          type=\"text\"\n          ref = {this.inputElementRef}\n          onChange={this.props.myChanged}\n          value={this.props.name}/>\n      </Aux>\n    )\n```\n\n\\- здесь мы обернули JXS в <AuthContext.Consumer>, но он не примнимает JSX код как дочерний, а принимает ф-цию, в аргументе которой - context и которая возвращает JSX. Все обернем в {}, т.к. это JS-код.\n\n### contextType & useContext()\n\nАльтернативный способ использования context в class-based components\nПредыдущий способ дает доступ к занчениям только в JSX коде, который обернут в context компонент. Но эти значения могут понадобится, например, в Life Cycle методах компонента.\n\n\nНужно задать в class-based component св-во:\n\n```javascript\nimport AuthContext from '../../../context/auth-context';\n...\nstatic contextType = AuthContext;\n...\n  componentDidMount() {\n    console.log(this.context);\n  }\n```\nИмя точно такое. static - это св-во доступно извне компонента.\n\n```javascript\n    return (\n      <Aux>\n        {this.context.authenticated ? <p>Authenticated!</p> : <p>Please log in!</p>}\n      </Aux>\n    )\n```\n\nВ functional components можно использовать хук useContext\n\n```javascript\nimport React, { useEffect, useRef, useContext } from 'react';\nimport AuthContext from '../../context/auth-context';\n...\n  const authContext = useContext(AuthContext);\n...\n      <button onClick={authContext.login}>Log in</button>\n```\n\nЕсли через контекст передавать объект, то дочерние компоненты будут перерисованы, даже если объект не изменился, т.к. Provider создает какждый раз новый объект, а объекты сравниваются по ссылке.\n\nЧтобы избежать перерисовки, надо положить объект в state.\n\nhttps://learn-reactjs.ru/core/context#394\n\nЕсли надо в качестве значения state присвоить метод, то надо определить метод до state, либо присвоить значение state в constructor.\n\n```javascript\n  increaseFirst = () => {\n    ...\n  }\n\n  state = {\n    numbers: {\n      first: 1,\n      second: 10,\n    },\n    numContextValue: {increaseFirst: this.increaseFirst}\n  }\n\n\n  render() {\n    return (\n      <div className=\"App\">\n        <Num.Provider value = {this.state.numContextValue}>\n          <NumberControls/>\n        </Num.Provider>\n      </div>\n    );\n  }\n```\n\n### Useful Resources & Links\n\n[More on useEffect()](https://reactjs.org/docs/hooks-effect.html)\n\nState & Lifecycle: https://reactjs.org/docs/state-and-lifecycle.html\n\nPropTypes: https://reactjs.org/docs/typechecking-with-proptypes.html\n\nHigher Order Components: https://reactjs.org/docs/higher-order-components.html\n\nRefs: https://reactjs.org/docs/refs-and-the-dom.html\n\n## A Real App: The Burger Builder (Basic Version)\n\n### Planning an App in React - Core Steps\n\n1.Component Tree / Component Structure\n\n\\- этот план может меняться по мере разработки приложения\n\n2.Application State (Data)\n\n3.Components vs Containers\n\nКакие компоненты будут stateless а какие statefull.\n\n### Planning the State\n\nЧтобы решить на каком уровне делать state, надо определить к какому компоненту данные отнсятся и влияют. Надо учитывать, что могут появится в будущем другие компоннты с другими данными и поэтому надо подумать, прежде чем запихивать все данные в App. \n\nО том, использовть ли PureComponent или shouldComponentUpdate лучше решить в процессе разработки, когда будет видно, где стоит оптимизировать цикл обновления.\n\n### Creating a Layout Component\n\nМожно разделить сожержимое layout на две части:\n\n1. Навигация - toolbar, sidedrawer, backdrop\n2. Содержимое страницы - burger builder\n\nПотому что навигация всегда на странице, а содержимое может меняться при навигации по страницам приложения.\n\n## Reaching out to the Web (Http / Ajax)\n\n### Understanding Http Requests in React\n\nВ single page application frontend и backend разделены и они не могут обмениваться информацией как в multi page - через html.\nВ SPA фронтенд и сервер обмениваются информацией в виде json.\nОбычно сервер содержит RESTful API.\n\n### Understanding our Project and Introducing Axios\n\nhttps://jsonplaceholder.typicode.com/\n- можно использовать для тестирования, если нет сервера.\n\nСпособы отправить запрос:\n* XMLHttpRequest - js объект, с его помощб можно составлять ajax-запросы, отпарвлять их на сервер и обрабатывать ответ. Но он довольно громоздкий в использовании. Но иногда предпочтиительней, чем fetch https://learn.javascript.ru/ajax-xmlhttprequest\n* Fetch - более современный, чем XMLHttpRequest https://learn.javascript.ru/fetch\n* Сторонняя библиотека. Например, Axios. https://github.com/axios/axios . Можно использовать где угодно, не только в Реакт.\n\n```javascript\nimport axios from 'axios';\n```\n\n**Альтернативы:**\nhttps://app.fakejson.com/member\n\n+: позволяет генерить json со своей структурой, сохранять сгенеренные json\n-: оганичения в бесплатной версии, нельзя обратиться к одной записи в сгенеренном json\n\nhttps://mockapi.io\n\nПозволяет генерить json со своей структурой, есть доступ к отдельным объектам\n\nСтатья - [Data mocking – Ways to fake a backend (API)](https://michael-kuehnel.de/api/2016/11/04/data-mocking-ways-to-fake-a-backend-api.html)\nв конце есть ссылки на генераторы\n\n\n### Creating a Http Request to GET Data\n\n\nНельзя просто присвоить переменной результат выполнения ф-ции, делающей http запрос.\nhttp-запросы выполняются асинхроннно, т.е. должно пройти какое-то время после отправки запроса, через которое будет получен ответ.\nА js выполняет код синхронно. Т.е. при присвоении занчения переменной сразу должна выполняться правая часть оператора присвоения.\nПоэтому axios использует промисы и axios.get возвращает промис.\n\n\n```javascript\n    componentDidMount() {\n        console.log('[Blog] componentDidMount');\n        const posts = axios.get('https://jsonplaceholder.typicode.com/posts')\n            .then(response => {\n                console.log(response);\n            })\n        console.log(posts);\n    }\n```\n\nthen - метод с аргументом - функцией, которая выполняется, когда промис выполнится (в нашем случае - когда запрос вернется). \nAxios передает возвращенные данные в параметр response этой ф-ции.\n\n### Rendering Fetched Data to the Screen\n\nResponse надо обрабатывать в then(), а не после axios.get. Потому что все операторы после axios.get js выполнит сразу, не дожидаясь возвращения промиса.\n\n```javascript\n    const posts = axios.get('https://jsonplaceholder.typicode.com/posts')\n      .then(response => {\n          this.setState({posts: response.data})\n      })\n...\n    render () {\n        const posts = this.state.posts.map(post => {\n          return <Post key={post.id} title={post.title}/>\n        })\n    ...\n    }\n...\n```\n\n\n### Transforming Data\n\nДанные возвращенные с сервера можно обработать в ф-ции-аргументе then с помощью js.\n\n```javascript\n   componentDidMount() {\n    const posts = axios.get('https://jsonplaceholder.typicode.com/posts')\n      .then(response => {\n        const posts = response.data.slice(0,4);\n        const updatedPosts = posts.map(post => {\n            return {\n                ...post,\n                author: 'Max'\n            }\n        })\n        this.setState({posts: updatedPosts});\n      })\n    }\n...\n```\n\n###  Fetching Data on Update (without Creating Infinite Loops)\n\nЕсли в ComponentDidMount добавить setState то получим бесконечный цикл запросов. Поэтмоу перед http-запросом надо проверять, надо ли его выполнять.\nНапример, выполнять запрос только когда переданы параметры для запроса, при этом запрос либо еще не далался либо делалася, но параметры запроса изменились.\n\n```javascript\n    componentDidUpdate() {\n        if (this.props.id > 0 && (!this.state.loadedPost || this.state.loadedPost.id !== this.props.id)) {\n            const post = axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)\n                .then(response => {\n                      this.setState({loadedPost: response.data});\n                })\n        }\n    }\n```\n\n### Adding Interceptors to Execute Code Globally\n\nInterceptors - глобальные ф-ции в axios, которые вызываются для любого запроса от приложения и для любого ответа в приложение.\nМожно применять, например, для установки общих header (например, authorization header) или для сохранения лога ответов или для обработки ошибок глобально.\n\nВ index.js:\n\n```javascript\naxios.interceptors.request.use(request => {\n  // Edit request config\n  return request;\n}, error => {\n  return Promise.reject(error);\n})\n```\n \\- этот интерсептор обрабатывает только запросы.\n\n\nТак мы регистрируем новый interceptor.  \nЗдесь request - это конфигурация.  \nВсе импорты axios в приложении пользуются одной конфигурацией. Поэтому можно задать конфигурацию в одном месте и она будет использоваться везде.\n\nПервая ф-ция обрабатывает успешный request и должна возвращать request, иначе все запросы заблокируются и будет ошибка\nМожно внутри отредактировать request, добавить хедеры, например. Интерсептор будет работать для всех запросов во всем приложении.\n\nМожно передать в интерсептор вторую ф-цию, которая будет обрабатывать ошибки. Эта ф-ция должна вернуть Promise.reject(error); \nчтобы вернуть ошибку в компонент, который отправил запрос и там ее можно обработать с помощью catch. Это имеет смысл, когда в разных компонентах надо сделать что-то свое, но при этом еще и обработать ошибку глобально, например, занести в лог.\n\nИнтерептор для ответов\n\n```javascript\naxios.interceptors.response.use(response => {\n  // Edit request config\n  return response;\n}, error => {\n  return Promise.reject(error);\n})\n```\n\n### Removing Interceptors\n\nYou learned how to add an interceptor, getting rid of one is also easy. Simply store the reference to the interceptor in a variable and call eject  with that reference as an argument, to remove it (more info: https://github.com/axios/axios#interceptors):\n\n```javascript\n    var myInterceptor = axios.interceptors.request.use(function () {/*...*/});\n    axios.interceptors.request.eject(myInterceptor);\n```\n\n\n### Setting a Default Global Configuration for Axios\n\nИногда надо установить глобальные паарметры для всех запросов. Например, адрес сервера.\n\n```javascript\naxios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';\n```\n\nТогда в запросах можно не указывать начало url, заданное в baseURL, а только остальную часть.\n\n```javascript\n        const posts = axios.get('/posts')\n```\n\nМожно задать параметры header для всех типов запросов:\n\n```javascript\naxios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';\n```\n\nМожно задать параметры header только для post, например:\n\n\n```javascript\naxios.defaults.headers.post['Content-Type'] = 'application/json';\n```\n\n### Creating and Using Axios Instances\n\nДопустим мы хотим использовать разные глобальные параметры axios для разных частей приложения.  \nВ этом случае можно использовать instances.\n\nНадо создать axios.js в той же папке, что и index.js. \nФ-ция axios.create создает инстанс axios, т.е. копию объекта axios. Таких копий можно создать несколько.  \nМожно в объекте задать параметр по-умолчанию, параметры заголовка только для этого инстанса.  \nМожно добавить интерсепторы.\n\n```javascript\nimport axios form 'axios';\n\nconst instance = axios.create({\n  baseURL: 'https://jsonplaceholder.typicode.com'\n});\n\ninstance.defaults.headers.common['Authorization'] = 'AUTH TOKEN FROM INSTANCE';\n\n//instance.interceptors.request.use\n\nexport default instance;\n```\n\nВ импорте файла, в котором хотим использовать инстанс:\n\n```javascript\nimport axois from '../../axios';\n```\n\n## Burger Builder Project: Accessing a Server\n\n### Firebase\n\nДля бэкенда используем Google Firebase - бэкенд из коробки, который позволяет настроить бэкенд с БД без написания кода. Бесплатный для небольшого кол-ва запросов. Реакт будет с ним взаимодейтсвовать, как с любой другой БД.\n\nСоздать Realtime Database.\n\n### Displaying a Spinner while Sending a Request\n\nСоздать компонент спиннер (обычно простой div с анимацией в стилях. Можно взять, например, здесь: https://projects.lukehaas.me/css-loaders/)\n\nСоздать св-во в state, например {loading: false}, переключаем его в true перед запросом и в false в then и в catch (не важно успешно ли выполнился запрос, главное, что он завершился)\n\nВ зависимости от значения св-ва loading рендерим или контент или лоадер.\n\nНе забыть проверить, что компонент, в котором рендерится спиннер, обновляется в зависимости от св-ва loading. (Если в компоненте есть memo c ф-цией или shouldComponentUpdate())\n\n### Handling Errors\n\nhoc component withErrorHandler\nИспользовать axios.interseptors в componentDidMount, которые будут утсанавливать ошибку кода надо в state = {error: null}\n\n### Removing Old Interceptors\n\nwithErrorHandler - hoc компонент, он таким сделан, чтобы можно было его переиспользовать с множеством других компонентов. \n\nПри каждом использовании с новым компонентом withErrorHandler создает новый класс с componentDidMount и interceptors.\nКогда компонент перестает использоваться, надо удалять interceptors.\nЭто делается в componentWillUnmount в class-based комонентах и в return function в useEffect() для functional components.\n\n\n## Multi-Page-Feeling in a Single-Page-App: Routing\n\nДля роутинга используем дополнительную библиотеку.\n\n### Routing and SPAs\n\nНадо показывать пользователю разные страницы для разных url. \nВ SPA только 1 html-файл, надо использовать js, чтобы рендерить страницу или ее части по-разному для разныx url. \nДля роутинга надо распарсить часть url после домена и в зависимости от ее значения отрендерить страницу. \nДля этого используется пакет для роутинга (router package). \nРоутер должен:\n* Распарcить путь\n* Разработчик задает набор путей, которые поддерживает приложение и пакет роутинга должен определить, поддерживается ли путь и что должно происходить, когда пользователь переходит по этому пути. \n* Отрендерить нужный jsx или выполнить код компонента\n\n\n### Setting Up the Router Package\n\n```\nnpm install --save react-router react-router-dom\n```\n\n\\- эти пакеты созданы не facebook, но являются стандартом де-факто для роутинга.\n\n Сначала надо включить использование роутинга в приложении. \n В корневом файле приложения (например, index.js или App.js)\n\n```javascript\nimport { BrowserRouter } from 'react-router-dom';\n ...\n  render() {\n    return (\n    <BrowserRouter>\n      ...\n    </BrowserRouter>\n    );\n  }\n```\n\n\\- надо обернуть в <BrowserRouter> все компоненты, в которых будем использовать роутинг\n\n(https://reacttraining.com/react-router/web/guides/quick-start)\n\n### react-router vs react-router-dom\n\nДля веб разработки нужен только react-router-dom, он содержит react-router как зависимость. Поэтому react-router можно не устанавливать, хотя он и содержит основную функциональность.\nЕсли возникнут проблемы - искать помощь и ответы лучше по \"react-router\" - это название основного пакета.\n\n### Setting Up and Rendering Routes\n\n```javascript\nimport { Route } from 'react-router-dom';\n...\nrender () {\n  return (\n    ...\n    <Route path=\"/\" exact render={() => {return <h1>Home</h1>}} />\n    ...\n)}\n...\n\n```\n\npath без exact - с чего начинается путь\npath с exact - точное соответствие пути\nrender - что возвращает при соответствии\n\nМожно использовать несколько <Route /> даже для одного и того же условия. Рендериться будет все, в случае соответствия условиям. \nМожно оборачивать в любые теги.\n\n### Rendering Components for Routes\n\n```javascript\nimport { Route } from 'react-router-dom';\nimport Posts from './Posts/Posts';\n...\nrender () {\n  return (\n    ...\n    <Route path=\"/\" exact component={Posts} />\n    ...\n)}\n...\n```\n\ncomponent - позволяет отрендерить компонент\nДля коротких сообщений лучше использовать render, для сложного кода - component.\n\n\n### Using Links to Switch Pages\n\nПри переходе по ссылкам внутри приложения, каждый раз страница перезагружается. При этом теряется состояние. \nОбычно мы хотим избежать потери состояния.\n\n\n```javascript\nimport { Route, Link } from 'react-router-dom';\n...\nrender () {\n  return (\n    ...\n    <li><Link to=\"/\">Home</Link></li>\n    <li>\n        <Link to={{\n         pathname: \"/new-post\",\n         hash: '#submit',\n         search: '?quick-submit=true'\n        }}>\n            New Post\n        </Link>\n    </li>\n    ...\n)}\n```\nДля этого используется компонент Link.\nПараметр to может быть строкой или js объектом.\n\n### Using Routing-Related Props\n\n```javascript\n    componentDidMount() {\n        console.log(this.props);\n    }\n```\n\nreact-router передает в компонент, который указан в Route объект props с параметрами. \nВ нем есть history, location, match. \nМожно использовать, чтобы посмотреть параметры запроса из search, перейти к метке hash внутри страницы. Можно использовать методы из history.\n\n### The \"withRouter\" HOC & Route Props\n\nЧто если нам надо получить параметры, передаваемые react-router не только в компонент, указанный в Route, а в компонент, который рендериться как часть первого компонента. По-умолчанию параметры в такие компоненты не передаются.\n\nЕсть два способа передать параметры в дочерние компоненты:\n\n1. Просто передать их как параметры\n\n```javascript\n  posts = this.state.posts.map(post => {\n      return <Post\n          {...this.props}\n          match2={this.props.match}\n          key={post.id}\n          title={post.title} \n          author={post.author} \n          click={() => this.onPostClickHandler(post.id)}\n      />\n  })\n```\n\n2. Использовать HOC\n\n```javascript\nimport { withRouter } from 'react-router-dom';\n...\nexport default withRouter(post);\n```\n\n###  Absolute vs Relative Paths\n\nПараметр to или pathname в <Link /> по-умолчанию трактуется как абсолютный путь. Т.е. прибавляется к доменому имени, не важно, на какой странице был пользователь перед переходом.\n\nОтносительный путь добавляется к тому пути, с которого переходят по ссылке.\nТекущий путь хранится в параметрах, передаваемых роутером - props.match.url\n\nЭто может пригодиться, если компонент уже загружен по какому-то пути (например, /posts) и надо к этому пути что-то добавить (например, /posts/new)\n\n\n```javascript\n  <Link to={{\n   pathname: this.props.match.url + \"/test\",\n  }}>Test</Link>\n```\n\n??? На главной вызывает ошибку - SecurityError: The operation is insecure. ???\n\n### Styling the Active Route\n\n```javascript\nimport { NavLink } from 'react-router-dom';\n...\n    <NavLink to={{\n     pathname: \"/new-post\",\n     hash: '#submit',\n     search: '?quick-submit=true'\n    }} \n    activeClassName=\"my-active\"\n    activeStyle={{color: 'red'}}>\n        New Post\n    </NavLink>\n```\n\nКомпонент NavLink для ссылок добавляет к текущей ссылке (которая ссылвается на текущий url) класс active. \nЕсли параметр exact=false, то активными считаются все ссылки, начинающиеся c pathname.\nМожно добавить свой класс для активной ссылки и свои инлайн-стили.\n\n[NavLink](https://reacttraining.com/react-router/web/api/NavLink)\n\n### Passing Route Parameters\n\nЧтобы по клику на пост переходить на адрес страницы поста надо обернуть пост в Link. \n\n```javascript\n      return (\n          <Link to={'/' + post.id} key={post.id}>\n              <Post\n                  title={post.title} \n                  author={post.author} \n              />\n          </Link>\n      )\n```\n\nЧтобы роутер мог обработать переход на адрес с динамическим значением:\n\n```javascript\n    <Route path=\"/new-post\" component={NewPost} />\n    <Route path=\"/:postId\" component={FullPost} />\n```\n\n\n### Extracting Route Parameters\n\nЗначение динамической части из параметра path в <Route /> передается в props.match.path вызываемого компонента. \nИмя формируется из имени динамической части в параметре path <Route />\n\n```javascript\n    <Route path=\"/:postId\" component={FullPost} />\n```\n\n```javascript\nclass FullPost extends Component {\n...\ncomponentDidMount() {\n  console.log(this.props.match.params.postId);\n}\n```\n\n### Parsing Query Parameters\n\nКак получить занчение search-подстроки url в виде ключ-значение? (Например для ?start=5)\n\n```javascript\n    componentDidMount() {\n        const query = new URLSearchParams(this.props.location.search);\n        for (let param of query.entries()) {\n            console.log(param); // yields ['start', '5']\n        }\n    }\n```\n\n*URLSearchParams* - встроенный объект, работающий на vanilla js, у него есть метод entries, возвращающий итератор. \nЭтот итератор можно использовать в for...of...  loop, он возвращает массивы, в которых первое значение - имя параметра, второе - значение.\n\n### Fragment\n\n```javascript\n<Link to=\"/my-path#start-position\">Go to Start</Link>\n```\nЗначение можно получить из props.location.hash\n\n### Using Switch to Load a Single Route\n\nВ следующей конструкции при переходе на /new-post будут срабатывать оба <Route /> и загружать свои компоненты.\n\n```javacript\n  <Route path=\"/new-post\" exact component={NewPost} />\n  <Route path=\"/:postId\" component={FullPost} />\n```\n\nЭто просходит потому, что /new-post тоже подходит под параметр path=\"/:postId\". \nЧтобы сработал только один Route надо использовать компонет Switch\n\n```javascript\nimport { Route, Switch } from 'react-router-dom';\n...\n  <Switch>\n      <Route path=\"/new-post\" exact component={NewPost} />\n      <Route path=\"/:postId\" component={FullPost} />\n  </Switch>\n```\n\n\\-  срабатывает первый соответствующий, поэтому \"/:postId\" должен идти после \"/new-post\"\n\n\n\n### Navigating Programmatically\n\nДругой способ переходить на страницы по клику\n\n```javascript\nclass Posts extends Component {\n    ...\n\n    onPostClickHandler = (id) => {\n        this.props.history.push('/' + id);\n    }\n\n  ...\n\n  <Post\n    key={post.id}\n    title={post.title} \n    author={post.author} \n    click={() => this.onPostClickHandler(post.id)}\n  />\n```\n\nУдобно применить, когда надо перейти по ссылке не сразу, а после окончания какого-то процесса, например, после выполнения http-запроса.\n\nВ св-ве history из объекта props, который передается компонентом <Route> в вызываемый компонент, есть методы, которые можно использовать.\nНапример goForward, goBack - перейти вперед или назадпо стеку страниц.\nМетод push - помещает страницу в стек страниц.\n\nВ метод push передаются такие же аргументы, как и в аргумент to компонента Link. \n\n### Additional Information Regarding Active Links\n\nНе стоит использовать адреса для страница вида /something-dynamic, где somothing-dynamic - переменный параметр, т.к. мы не сможем стилизовать ссылки только на эти адреса.\nДля того чтобы стилизовать активные ссылки на все такие адреса, надо указать в ссылке to=\"/\", но не указывать exact. Но тогда к этой ссылке будет добавлен класс active на всех страницах, у которых адрес начинающиется на '/', а это вообще все страницы в приложении. \nЛучше добавить такой ссылке префикс, например /posts/:something-dynamic\n\n\n### Understanding Nested Routes\n\nДо сих при смене роутера мы меняли на странице один компонент на другой.\nИногда надо отрендерить один компонент внутри другого.\n\nДля этого надо вставить <Route> в любое место в другом компоненте, если этот компонент находится внутри <BrowserRouter> (в том числе вложен в BrowserRouter)\n\n*Blog.js*\n```javascript\n                <Switch>\n                    <Route path=\"/new-post\" exact component={NewPost} />\n                    <Route path=\"/\" component={Posts} />\n                </Switch>\n```\n\n\\- здесь надо убрать exact у  **<Route path=\"/\" component={Posts} />**, потому что, при переходе на конкретный пост из компонента Posts путь будет вида /:id, а поскольку при exact такого варианта нет в Blog.js, то не будут отображаться Posts, а следовательно и FullPost, который загружается из Posts.\nПри Nested Routes все возможные адреса должны быть доступны в корневом копоненте.\n\n*posts.js*\n\n```javascript\n    onPostClickHandler = (id) => {\n        this.props.history.push('/posts/' + id);\n    }\n    ...\n        return (\n                <div>\n                <Route path=\"/posts/:postId\" component={FullPost} />\n                <section className=\"Posts\">\n                    {posts}\n                </section>\n        );\n```\n\n*FullPost.js*\n\n```javascript\n    componentDidUpdate() {\n        console.log('[FullPost componentDidUpdate]');\n        if (this.props.match.params.postId > 0 && (!this.state.loadedPost || this.state.loadedPost.id !== this.props.match.params.postId)) {\n            console.log('Post loading 2 ...');\n            const post = axios.get('/posts/' + this.props.match.params.postId)\n                .then(response => {\n                        console.log('Post loaded: ');\n                        console.log(response.data);\n                        this.setState({loadedPost: response.data});\n\n                })\n        }\n    }\n    ...\n    render () {\n      let post = <p>Please select a Post!</p>;\n      if (this.props.match.params.postId) {\n          post = <p>Loading...</p>\n      }\n      if (this.state.loadedPost) {\n          post = (\n              <div>\n                  <h1>{this.state.loadedPost ? this.state.loadedPost.title : 'Title'}</h1>\n                  <p>{this.state.loadedPost ? this.state.loadedPost.body : 'Content'}</p>\n                  <div className=\"Edit\">\n                      <button onClick = {this.deletePostHandler} className=\"Delete\">Delete</button>\n                  </div>\n              </div>\n          );\n      }\n      return (\n          <div className=\"FullPost\">\n              {post}\n          </div>\n      )\n    }\n\n```\n\nМожно сделать относительный путь к компоненту динамическим, чтобы он работал из любого места и присоединялся к текущему пути динамически.\nТекущий путь берем из\n\n*posts.js*\n\n```javascript\n    onPostClickHandler = (id) => {\n        this.props.history.push('/posts/' + id);\n    }\n    ...\n        return (\n                <div>\n                <Route path={this.props.match.url + '/:id'}  component={FullPost} />\n                <section className=\"Posts\">\n                    {posts}\n                </section>\n        );\n```\n\n## Creating Dynamic Nested Routes\n\nВ предыдцщем примере при первом клике на пост ничего не загружается, хотя осуществляется переход на страницу /posts/:postId.\nЭто потому что код вывода поста по клику находится в componentDidUpdate, а при первом клмке срабатывает только componentDidMount.\nНадо вынести код в отдельный метод и вызывать этот метод и в \n\n## Questions\n\n1.Что если у меня в App.js вызывается много одинаковых компонентов, их состояние храниться в массиве и мне надо изменить значение и перерендерить только один компонент? Как это правильно сделать?\n\nВроде как, если есть key и список однотипных элементов,то Реакт перерендерит только измененные компоненты, хотя в setState передается весь массив.\n\n\n2.Как понять, что реакт перерендирит, а что нет? Например при использовании списков, и изменении одного пункта, как убедиться, что он перерендирит только измененные пункты списка?\n\n\nМожно выводить отладочные сообщения в lifecycle hooks.\n\nВот здесь - [https://habr.com/en/post/319536/](https://habr.com/en/post/319536/) описано Профилирование компонентов с помощью Timeline в Chrome\n\n\n3.Как в shouldComponentUpdate происходит сравнение массивов и объектов? Ведь вроде как они передаются по ссылке и сравниваются ссылки?\n\nПоскольку мы используем immutable изменение, то при любом изменении в свойство записывается новый массив.\n\n4.При использовании css-modules при повтроном использовании блока получается, что нельзя добавить ему класс, не используя параметры. Может быть в каждом компоненте добавлять props.class и использовать его в className? Нормальная ли это практика?\n\n\n```javascript\n<div className = {classes.Toolbar}>\n  <Logo addclass = {classes.Logo}/>\n</div>\n```\n\n```javascript\nconst Logo = props => {\n\n  console.log(props.addclass);\n\n  const classnames = [classes.Logo];\n  if (props.addclass) {\n    classnames.push(props.addclass);\n  }\n\n  console.log(classnames);\n\n  return (\n    <div className={classnames.join(' ')}>\n      <img src={burgerLogo} alt='MyBurger'/>\n    </div>\n  );\n\n}\n```\n\n\n======\n## Ссылки\n(https://bookflow.ru/pochti-500-react-proektov-i-resursov/)\nhttps://madewithreact.com/",
 			"file": "/home/helloworld/React-Guide/README.md",
-			"file_size": 118228,
-			"file_write_time": 132335148864778338,
 			"settings":
 			{
-				"buffer_size": 83841,
+				"buffer_size": 92586,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -495,52 +496,16 @@
 			"file": "containers/Blog/Blog.js",
 			"settings":
 			{
-				"buffer_size": 1613,
+				"buffer_size": 1979,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "containers/Blog/Posts/Posts.js",
+			"file": "hoc/asyncComponent.js",
 			"settings":
 			{
-				"buffer_size": 2665,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "containers/Blog/FullPost/FullPost.js",
-			"settings":
-			{
-				"buffer_size": 2071,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "index.js",
-			"settings":
-			{
-				"buffer_size": 946,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "axios.js",
-			"settings":
-			{
-				"buffer_size": 146,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "containers/Blog/NewPost/NewPost.js",
-			"settings":
-			{
-				"buffer_size": 1831,
+				"buffer_size": 430,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -557,6 +522,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
 			[
 				"Snippet: ",
 				"Snippet: React:Functional Component"
@@ -605,27 +578,28 @@
 	[
 		"/home/helloworld/React-Guide/http",
 		"/home/helloworld/React-Guide/http/src",
-		"/home/helloworld/React-Guide/http/src/components",
-		"/home/helloworld/React-Guide/http/src/components/Post",
 		"/home/helloworld/React-Guide/http/src/containers",
 		"/home/helloworld/React-Guide/http/src/containers/Blog",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/FullPost",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/NewPost",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/Posts"
+		"/home/helloworld/React-Guide/http/src/containers/Blog/Posts",
+		"/home/helloworld/React-Guide/http/src/hoc"
 	],
 	"file_history":
 	[
-		"/home/helloworld/Work/ttec/temp2.html",
+		"/home/helloworld/React-Guide/http/src/containers/Blog/Posts/Posts.js",
+		"/home/helloworld/React-Guide/http/src/containers/Blog/NewPost/NewPost.js",
 		"/home/helloworld/React-Guide/http/src/containers/Blog/FullPost/FullPost.js",
+		"/home/helloworld/React-Guide/http/src/http.sublime-project",
+		"/home/helloworld/React-Guide/http/src/index.js",
+		"/home/helloworld/React-Guide/http/src/axios.js",
+		"/home/helloworld/React-Guide/http/README.md",
+		"/home/helloworld/React-Guide/README.md",
+		"/home/helloworld/Work/ttec/temp2.html",
 		"/home/helloworld/React-Guide/http/src/components/Post/Post.js",
 		"/home/helloworld/React-Guide/react-complete-guide/react-complete-guide.sublime-workspace",
-		"/home/helloworld/React-Guide/http/src/http.sublime-project",
 		"/home/helloworld/React-Guide/http/src/containers/Blog/Blog.css",
 		"/home/helloworld/React-Guide/http/src/App.js",
 		"/home/helloworld/React-Guide/http/src/containers/Blog/Posts/Posts.css",
 		"/home/helloworld/React-Guide/http/src/containers/Blog/Blog.js",
-		"/home/helloworld/React-Guide/http/src/index.js",
-		"/home/helloworld/React-Guide/http/src/axios.js",
 		"/home/helloworld/React-Guide/http/package.json",
 		"/home/helloworld/React-Guide/http/package-lock.json",
 		"/home/helloworld/React-Guide/http/how-to-use.txt",
@@ -639,7 +613,6 @@
 		"/home/helloworld/burger/src/App.js",
 		"/home/helloworld/burger/src/components/Navigation/Toolbar/Toolbar.js",
 		"/home/helloworld/burger/src/components/Layout/Layout.js",
-		"/home/helloworld/React-Guide/README.md",
 		"/home/helloworld/burger/src/components/Navigation/SideDrawer/SideDrawer.js",
 		"/home/helloworld/burger/src/components/Navigation/SideDrawer/SideDrawer.module.css",
 		"/home/helloworld/burger/src/components/UI/Hamburger/Hamburger.module.css",
@@ -739,10 +712,7 @@
 		"/home/helloworld/Work/rent/src/js/utils/selectize.scss",
 		"/home/helloworld/Work/rent/src/blocks/calc-rent/calc-rent.scss",
 		"/home/helloworld/Work/rent/package.json",
-		"/home/helloworld/Work/rent/src/blocks/page-tariff/page-tariff.scss",
-		"/home/helloworld/Work/rent/src/blocks/terms-row/terms-row.scss",
-		"/home/helloworld/Work/rent/src/blocks/order/order.js",
-		"/home/helloworld/Work/nicefitness/src/blocks/news/news.scss"
+		"/home/helloworld/Work/rent/src/blocks/page-tariff/page-tariff.scss"
 	],
 	"find":
 	{
@@ -794,7 +764,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -803,19 +773,20 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 83841,
+						"buffer_size": 92586,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								82077,
-								82077
+								90591,
+								90591
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
 							"bracket_highlighter.busy": false,
 							"bracket_highlighter.locations":
 							{
@@ -832,8 +803,8 @@
 								{
 									"1":
 									[
-										81502,
-										81503
+										89585,
+										89586
 									]
 								}
 							},
@@ -844,51 +815,51 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
@@ -900,10 +871,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 44775.0,
+						"translation.y": 47637.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -912,19 +883,20 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1613,
+						"buffer_size": 1979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								558,
-								558
+								1562,
+								1562
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
 							"bracket_highlighter.busy": false,
 							"bracket_highlighter.locations":
 							{
@@ -932,585 +904,8 @@
 								{
 									"1":
 									[
-										558,
-										559
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/double_quote.png",
-										"region.greenish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										551,
-										552
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "containers/Blog/Posts/Posts.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2665,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2169,
-								2169
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										2170,
-										2171
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/single_quote.png",
-										"region.greenish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										2161,
-										2162
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"open_with_edit": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 204.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "containers/Blog/FullPost/FullPost.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2071,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								415,
-								415
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										2041,
-										2042
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/curly_bracket.png",
-										"region.purplish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										129,
-										130
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 946,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								946,
-								946
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "axios.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 146,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								115,
-								115
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										115,
-										116
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/double_quote.png",
-										"region.greenish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										70,
-										71
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "containers/Blog/NewPost/NewPost.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1831,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1768,
-								1768
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										1796,
-										1797
+										1943,
+										1944
 									]
 								},
 								"icon":
@@ -1525,8 +920,8 @@
 								{
 									"1":
 									[
-										746,
-										747
+										586,
+										587
 									]
 								},
 								"unmatched":
@@ -1540,51 +935,51 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
@@ -1599,7 +994,127 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "hoc/asyncComponent.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								336,
+								336
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										392,
+										393
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										295,
+										296
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"open_with_edit": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1638,7 +1153,7 @@
 	"menu_visible": true,
 	"output.Terminus":
 	{
-		"height": 110.0
+		"height": 220.0
 	},
 	"output.exec":
 	{
@@ -1654,7 +1169,7 @@
 	},
 	"output.nodejs":
 	{
-		"height": 241.0
+		"height": 134.0
 	},
 	"pinned_build_system": "",
 	"project": "http.sublime-project",
@@ -2210,7 +1725,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 437.0,
+	"side_bar_width": 360.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

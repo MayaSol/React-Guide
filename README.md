@@ -2277,8 +2277,13 @@ react-router передает в компонент, который указан
 
 ### The "withRouter" HOC & Route Props
 
-Что если нам надо получить параметры, передаваемые react-router не только в компонент, указанный в Route, а в компонент, который рендериться как часть первого компонента. По-умолчанию параметры в такие компоненты не передаются.
+Что если нам надо получить параметры, передаваемые react-router не только в компонент, указанный в Route, а в компонент, который рендерится как часть компонента из Route. По-умолчанию параметры в такие компоненты не передаются.
 
+Например, в Blog.js вызывается компоннт Posts, внутри которого рендерятся компоненты Post:
+
+```javascript
+    <Route path="/posts" component={Posts} />
+```
 Есть два способа передать параметры в дочерние компоненты:
 
 1. Просто передать их как параметры
@@ -2494,6 +2499,16 @@ class Posts extends Component {
         this.props.history.push('/posts/' + id);
     }
     ...
+        posts = this.state.posts.map(post => {
+            return (
+                    <Post
+                        key={post.id}
+                        title={post.title} 
+                        author={post.author} 
+                        click={() => this.onPostClickHandler(post.id)}
+                    />
+            )
+        })    
         return (
                 <div>
                 <Route path="/posts/:postId" component={FullPost} />
@@ -2506,7 +2521,7 @@ class Posts extends Component {
 *FullPost.js*
 
 ```javascript
-    componentDidUpdate() {
+    componentDidMount() {
         console.log('[FullPost componentDidUpdate]');
         if (this.props.match.params.postId > 0 && (!this.state.loadedPost || this.state.loadedPost.id !== this.props.match.params.postId)) {
             console.log('Post loading 2 ...');
@@ -2566,7 +2581,218 @@ class Posts extends Component {
 
 ## Creating Dynamic Nested Routes
 
-В предыдцщем примере при первом клике на пост ничего не загружается, хотя осуществляется переход на страницу /posts/:postId
+В предыдцщем примере при повторном клике на пост ничего не загружается, хотя осуществляется переход на страницу /posts/:postId
+Потому что route не дел1ает unmount и mount компонента каждый раз. Он просто меняет параметр, при изменении параметра происходит ComponentDidUpdate().
+Надо вынести код загрузки поста в отдельный метод и вызывать его и в ComponentDidMoun() и ComponentDidUpdate().
+
+## Redirecting Request
+
+Допустим, надо перенаправить пользователя с одного пути на другой. Например на '/posts' c '/'.
+Можно вызвать Route несколько и для разных путей рендерить один и тот же компонент.
+А можно использовать компонент Redirect из react-router-dom. Redirect с атрибутом from можно использовать только внутри switch. Вне switch он всегда будете перенаправлять на to. Потому что компонент Redirect осуществляет переход, всегда, когда рендерится.
+
+```javascript
+  <Switch>
+      <Route path="/new-post" exact component={NewPost} />
+      <Route path="/posts" component={Posts} />
+      <Redirect from="/" to="posts/"/>
+  </Switch>
+```
+
+https://reacttraining.com/react-router/web/api/Redirect
+
+### Conditional Redirects
+
+Рассмотрим компонент NewPost. После нажатия на кнопку Add Post, вызывается метод postDataHandler, который создает новый пост в базе. После создания поста мы хотим сделать переход на другую страницу. В этом нам поможет Redirect.
+
+Если просто поместить Redirect в jsx код компонента NewPost, то переход будет осуществляться всегда, и мы не увидим то, что рендерит NewPost. Поэтому надо рендерить Redirect по условию.
+
+В state добавить свойство, по-умолчанию false, которому присваивать true в методе postDataHandler, после занесения нового поста в базу. И в зависимости от значения св-ва рендерить Redirect.
+
+```javascript
+class NewPost extends Component {
+    state = {
+        title: '',
+        content: '',
+        author: 'Max',
+        newPost: null,
+        submitted: false
+    }
+    ...
+    postDataHandler = () => {
+      ...
+      let newPost = axios.post('/posts/', post)
+          .then(response => {
+              if (!this.state.newPost) {
+                  this.setState({
+                      newPost: newPost,
+                      submitted: true
+                  });
+              }
+          })
+    }
+    ...
+    render () {
+      let redirect = null;
+      if (this.state.submitted) {
+          redirect = <Redirect to="/posts/" />
+      }
+      return (
+          <div className="NewPost">
+              {redirect}
+              <h1>Add a Post</h1>
+              ...
+          </div>
+      );
+    }
+}
+```
+
+### Using the History Prop to Redirect (Replace)
+
+Еще один способ перейти на другую страницу - использовать this.props.history.push('/posts/');. Это метод можно использовать, если компонент рендерится из компонента <Route />.  Если компонент рендерится снутри компонента, который в свою очередь рендерится в <Route /> , то надо убедится, что параметры передаются в дочерний компонент.
+
+Различия методов this.props.history.push и <Redirect />:
+this.props.history.push - помещает страницу в стек и мы можем после перехода на новую страницу вернуться с нее на предыдущую по кнопке Назад в браузере.
+<Redirect /> - заменяет страницу в стеке, после перехода на страницу не получится вернуться на предыдущую по кнопке Назад.
+
+Метод this.props.history.replace - он тоже заменяет страницу в стеке, как и <Redirect />
+<Redirect />  с параметром push <Redirect push to="/somewhere/else" /> - добавляет страницу в стек
+
+
+### Working with Guards
+
+Navigation Guards используются, когда надо предоставить возможность перехода по определенным путям только аутентифицированным пользователям.
+
+Чтобы решить эту задачу при использовании <Route /> достаточно рендерить нужный компонент <Route />  в зависимости от условий. 
+
+```javascript
+<Switch>
+    <Route ... />
+    <Route ... />
+    ...
+    <Redirect from="/" to="posts/"/>
+</Switch>
+```
+
+В этои примере, если пользователь не аутентифицирован, <Route /> для '/new-post' не рендерится, его компонент не загружается и этот путь обрабатывается, как не определенный. Поэтому срабатывает <Redirect from="/" to="posts/"/> (тут нет exact и этот Redirect срабатывает для любого пути, начинающегося с '/')
+
+Другой способ - сделать проверку в componentDidMount компонента, доступ к которому должен быть только у зареганых юзеров. И для перехода испольщовать, например, this.props.history.replace.
+
+### Handling the 404 Case (Unknown Routes)
+
+Можно обрабатывать несуществующие адреса с помощью <Redirect /> внутри <Switch>, который будет отлавливать все необработанные перед ним адреса, начианющиеся с '/' и отправлять на страницу 404. (точнее рендерить страницу 404)
+
+Другой способ - компонент <Route /> без path.
+
+```javasript
+<Switch>
+    <Route ... />
+    <Route ... />
+    ...
+    <Route path="/" render={()=><h1>404 - NOT FOUND</h1>} />
+</Switch>
+```
+
+ - не будет работать вместе с Redirect c "/"  - <Redirect from="/" to="posts/"/>, т.к. он тоже отлавливает все неотловленное и будет срабатывать что-то одно, в зависимости от порядка
+
+### Loading Routes Lazily
+
+Иногда полезно, чтобы код компонентов загружался только тогда, когда пользоваель перейдет по соответствующему пути и понадобится соответствующий компонент и его дети.
+Хотя в маленьких приложениях это может замедлить работу приложения, т.к. копомнентов не много и лишние запросы к серверу только увеличат нагрузку.
+
+Техника, позволяющая загружать только тот код, который используется, называется code splitting или lazy loading.
+
+Эта техника сильно зависит от используемых настроек webpack. Она работает с последними версиями create-react-app, но должна работать и с большинством соврменных конфигураций webpack.
+
+Нам понадобится higher order component.
+
+```javascript
+import React, {Component} from 'react';
+
+const asyncComponent = (importComponent) => {
+  return class extends Component {
+    state = {
+      component: null
+    }
+
+    componentDidMount () {
+      importComponent()
+        .then ( cmp => {
+          this.setState({component: cmp.default});
+        });
+    }
+
+    render () {
+      const C = this.state.component;
+
+      C ? <C {...this.props} /> : null;
+    }
+  }
+}
+```
+
+\- это функция, которая возвращает компонент. Аргумент importComponent - это функция. В state возвращаемого компонента есть св-во component, которое сначала установлено в null, но потом его значением станет загружаемый компонент. Устанавливается оно в ComponentDidMount путем вызова аргумента-функции importComponent. importComponent возвращает promise, у аргумента которого есть св-во default, которое содержит компонент, который мы загружаем динамически.
+И потом, если компонент загружен, то asyncComponent рендерит его. 
+
+
+Загрудим динамически компонет NewPost в Blog.js Строка **import NewPost from './NewPost/NewPost';** сообщает webpack, что надо загрузить эту зависимость в общий bundle. Но мы хотим, чтобы эта часть загружалась отдельно от общего бандла и только в случае необходимости. Но webpack все равно должен иметь возможность создать отдельный bundle, чтобы загрузить его, когда возникнет эта необходимость.
+Поэтому вместо **import NewPost from './NewPost/NewPost';** запишем:
+
+```javascript
+import asyncComponent from '../../hoc/asyncComponent';
+
+const AsyncNewPost = asyncComponent(() => {
+    return import('./NewPost/NewPost');
+});
+
+...
+    render () {
+        return (
+          ...
+          <Switch>
+              {this.state.auth ? <Route path="/new-post" exact component={AsyncNewPost} /> : null}
+              ...
+          </Switch>        
+        )
+    }
+```
+
+'./NewPost/NewPost' будет загружен только когда отрендерится AsyncNewPost, а мы будем ее рендерить только при переходе по определенному пути, внутри <Route/>
+
+ПРи переходе на New Post можно увидеть на вкладке Network загрузку 0.chunck.js . Это дополнительный bundle, в который включен компонент NewPost и все его дочерние компоненты.
+
+
+### Lazy Loading with React Suspense (16.6)
+
+Для Реакт версии 16.6.0 и выше есть другой способ ленивой загрузки (lazy loading).
+
+Lazy loading можно использовать не только при маршрутизации. когда компонент загружается, только когда пользователь перешел по соответствующему пути. Но и в условиях, когда компонент загружается или нет в зависимости от выполнения условия.
+
+Динамический импорт поддерживает только компоненты с default export, name export не поддерживается.
+
+
+```javascript
+import React, { Component, Suspense } from 'react';
+...
+const Posts = React.lazy(() => import('./containers/Posts'));
+...
+<Route path="/posts" render={() => (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Posts />
+    </Suspense>
+  )}
+/>
+```
+Преимущество этого подхода в том, что его можно использовать не только с компонентом Route.
+
+Не работает с server side rendering.
+
+Имеет смысл использовать для компонентов, для которых могут быть сформированы большие chuncs данных. Для простых компонентов может даже замедлить работу.
+
+### Routing and Server Deployment
+
+
 
 ## Questions
 
@@ -2621,4 +2847,11 @@ const Logo = props => {
 ======
 ## Ссылки
 (https://bookflow.ru/pochti-500-react-proektov-i-resursov/)
+
 https://madewithreact.com/
+
+(https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial) A Firebase in React Tutorial for Beginners [2019] 
+
+(https://learn-reactjs.ru/)
+
+(https://reacttraining.com/react-router/web/guides/quick-start)
