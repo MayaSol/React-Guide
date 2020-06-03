@@ -9,8 +9,8 @@
 * [7. Diving Deeper into Components & React Internals](#diving-deeper-into-components--react-internals)
 * [8. A Real App: The Burger Builder (Basic Version)](#a-real-app-the-burger-builder-basic-version)
 * [9. Reaching out to the Web (Http / Ajax)](#reaching-out-to-the-web-http--ajax)
-* [10. Burger Builder Project: Accessing a Server](#https://github.com/MayaSol/React-Guide#burger-builder-project-accessing-a-server)
-* [11. Routing](https://github.com/MayaSol/React-Guide#multi-page-feeling-in-a-single-page-app-routing)
+* [10. Burger Builder Project: Accessing a Server](#burger-builder-project-accessing-a-server)
+* [11. Routing](#multi-page-feeling-in-a-single-page-app-routing)
 * [ Questions](#questions)
 
 
