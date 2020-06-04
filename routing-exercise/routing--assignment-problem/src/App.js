@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, NavLink, Switch } from 'react-router-dom';
 
 import Courses from './containers/Courses/Courses';
+import Course from './containers/Course/Course';
 import Users from './containers/Users/Users';
 import Aux from './hoc/Aux';
+
+import './App.css';
 
 class App extends Component {
   render () {
@@ -12,7 +15,20 @@ class App extends Component {
         <h1>React Routing Exercise</h1>
         <BrowserRouter>
         <Aux>
-          <Route path="/courses" component={Courses}/>
+          <nav className="main-nav">
+            <ul>
+              <li>
+                <NavLink className="main-nav__link" activeClassName="main-nav__link--active" to="/courses">Courses</NavLink>
+              </li>
+              <li>
+                <NavLink className="main-nav__link" activeClassName="main-nav__link--active" to="/users">Users</NavLink>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route path="/courses/course" component={Course}/>
+            <Route path="/courses" component={Courses}/>
+          </Switch>
           <Route path="/users" component={Users}/>
         </Aux>
         </BrowserRouter>
