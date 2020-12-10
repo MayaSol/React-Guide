@@ -4,256 +4,20 @@
 		"selected_items":
 		[
 			[
-				"соот",
-				"соответствующему\tabc"
+				"L",
+				"Layout.css"
 			],
 			[
-				"const",
-				"constructor\tabc"
+				"Recipe",
+				"RecipeBuilder\tabc"
 			],
 			[
-				"comp",
-				"components/"
+				"R",
+				"RecipeBuilder\tabc"
 			],
 			[
-				"Full",
-				"FullPost/"
-			],
-			[
-				"compon",
-				"componentDidMount\t(README.md)"
-			],
-			[
-				"New",
-				"NewPost\tabc"
-			],
-			[
-				"compone",
-				"components\t(README.md)"
-			],
-			[
-				"set",
-				"setState\tabc"
-			],
-			[
-				"post",
-				"postDataHandler\tabc"
-			],
-			[
-				"prev",
-				"prevProps\tabc"
-			],
-			[
-				"side",
-				"sideDrawerToggle\t(Layout.js)"
-			],
-			[
-				"sid",
-				"sideDrawerToggleClicked\tabc"
-			],
-			[
-				"w",
-				"width\tproperty"
-			],
-			[
-				"clas",
-				"classnames\tabc"
-			],
-			[
-				"h",
-				"height\tproperty"
-			],
-			[
-				"tra",
-				"transition\tproperty"
-			],
-			[
-				"Nav",
-				"NavigationItems\t(NavigationItems.js)"
-			],
-			[
-				"Navigation",
-				"NavigationItem\tabc"
-			],
-			[
-				"Naviga",
-				"NavigationItem\t(NavigationItem.js)"
-			],
-			[
-				"border-r",
-				"border-radius\tproperty"
-			],
-			[
-				"border",
-				"border-box\tbox-sizing"
-			],
-			[
-				"box-",
-				"box-sizing\tproperty"
-			],
-			[
-				"max-",
-				"max-width\tproperty"
-			],
-			[
-				"burger",
-				"burgerLogo\tabc"
-			],
-			[
-				"con",
-				"constructor\tabc"
-			],
-			[
-				"ca",
-				"cancelHandler\tabc"
-			],
-			[
-				"Order",
-				"OrderSummary\tabc"
-			],
-			[
-				"cons",
-				"console\tabc"
-			],
-			[
-				"Ba",
-				"Backdrop\tabc"
-			],
-			[
-				"Back",
-				"Backdrop/"
-			],
-			[
-				"pur",
-				"purchasing\tabc"
-			],
-			[
-				"ingre",
-				"ingredientSummary\tabc"
-			],
-			[
-				"Ore",
-				"OrderSummary\tabc"
-			],
-			[
-				"child",
-				"children\t(README.md)"
-			],
-			[
-				"d",
-				"disabled\tabc"
-			],
-			[
-				"disab",
-				"disabledInfo\tabc"
-			],
-			[
-				"di",
-				"disabledInfo\tabc"
-			],
-			[
-				"ing",
-				"ingredients\tabc"
-			],
-			[
-				"to",
-				"totalPrice\tabc"
-			],
-			[
-				"remove",
-				"removeIngredientHandler\tabc"
-			],
-			[
-				"Build",
-				"BuildControls\tabc"
-			],
-			[
-				"context",
-				"contextType\t(README.md)"
-			],
-			[
-				"use",
-				"useEffect\t(README.md)"
-			],
-			[
-				"add",
-				"addIngredientHandler\tabc"
-			],
-			[
-				"ingredient",
-				"ingredients-context.js"
-			],
-			[
-				"create",
-				"createContext\t(README.md)"
-			],
-			[
-				"BuildC",
-				"BuildControl\tabc"
-			],
-			[
-				"Burger",
-				"BurgerIngredient\t(Burger.js)"
-			],
-			[
-				"but",
-				"button\tabc"
-			],
-			[
-				"build",
-				"buildControl\tabc"
-			],
-			[
-				"class",
-				"className\t(README.md)"
-			],
-			[
-				"BuildControls",
-				"BuildControls.module.css"
-			],
-			[
-				"Buil",
-				"BuildControls\tabc"
-			],
-			[
-				"box-s",
-				"box-shadow\tproperty"
-			],
-			[
-				"tr",
-				"transformedIngredients\tabc"
-			],
-			[
-				"Bur",
-				"BurgerIngredient.js"
-			],
-			[
-				"Burg",
-				"BurgerIngredient\tabc"
-			],
-			[
-				"cla",
-				"classes\tabc"
-			],
-			[
-				"Seeds",
-				"Seeds2\t(BurgerIngredient.module.css)"
-			],
-			[
-				"bur",
-				"burgerIngredient\tabc"
-			],
-			[
-				"Con",
-				"Content\t(README.md)"
-			],
-			[
-				"BUr",
-				"BurgerBuider\tabc"
-			],
-			[
-				"Bure",
-				"BurgerBuider\tabc"
+				"Rec",
+				"RecipeBuilder/"
 			],
 			[
 				"Auth",
@@ -266,6 +30,10 @@
 			[
 				"at",
 				"auth-context\t(README.md)"
+			],
+			[
+				"context",
+				"context/"
 			],
 			[
 				"auth",
@@ -308,8 +76,16 @@
 				"showCockpit\tabc"
 			],
 			[
+				"use",
+				"useEffect\tabc"
+			],
+			[
 				"next",
 				"nextState\t(README.md)"
+			],
+			[
+				"compon",
+				"component\t(README.md)"
 			],
 			[
 				"nex",
@@ -330,6 +106,10 @@
 			[
 				"Co",
 				"Cockpit\tabc"
+			],
+			[
+				"comp",
+				"components\t(README.md)"
 			],
 			[
 				"Error",
@@ -366,6 +146,10 @@
 			[
 				"name",
 				"nameChangedHandler\tabc"
+			],
+			[
+				"set",
+				"setState\tabc"
 			],
 			[
 				"other",
@@ -424,12 +208,20 @@
 				"contacts-address\t(index.pug)"
 			],
 			[
+				"add",
+				"addEventListener\tabc"
+			],
+			[
 				"subsc",
 				"subscrie-placholder\tabc"
 			],
 			[
 				"line",
 				"line-height\tabc"
+			],
+			[
+				"tr",
+				"translateY(80\t(page.scss)"
 			],
 			[
 				"font",
@@ -472,6 +264,10 @@
 				"transform\tabc"
 			],
 			[
+				"tra",
+				"transparent"
+			],
+			[
 				"cu",
 				"currentColor\tabc"
 			],
@@ -484,10 +280,28 @@
 	"buffers":
 	[
 		{
-			"file": "routing-react-suspense/routing--react-suspense-start/src/index.js",
+			"file": "src/axios.js",
 			"settings":
 			{
-				"buffer_size": 170,
+				"buffer_size": 139,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/containers/Blog/Posts/Posts.js",
+			"settings":
+			{
+				"buffer_size": 2665,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "untitled.sublime-project",
+			"settings":
+			{
+				"buffer_size": 117,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -503,22 +317,6 @@
 		"last_filter": "",
 		"selected_items":
 		[
-			[
-				"Package Control: ins",
-				"Package Control: Install Package"
-			],
-			[
-				"Package Control: ",
-				"Package Control: Install Package"
-			],
-			[
-				"Snippet: ",
-				"Snippet: React:Functional Component"
-			],
-			[
-				"Snippet: re",
-				"Snippet: React: class component"
-			],
 			[
 				"ter",
 				"Terminus: Toggle Panel"
@@ -557,83 +355,24 @@
 	},
 	"expanded_folders":
 	[
-		"/home/helloworld/React-Guide/routing-react-suspense",
-		"/home/helloworld/React-Guide/routing-react-suspense/__MACOSX",
-		"/home/helloworld/React-Guide/routing-react-suspense/routing--react-suspense-start",
-		"/home/helloworld/React-Guide/routing-react-suspense/routing--react-suspense-start/src"
+		"/home/helloworld/React-Guide/http/src",
+		"/home/helloworld/React-Guide/http/src/containers",
+		"/home/helloworld/React-Guide/http/src/containers/Blog",
+		"/home/helloworld/React-Guide/http/src/containers/Blog/NewPost",
+		"/home/helloworld/React-Guide/http/src/containers/Blog/Posts"
 	],
 	"file_history":
 	[
-		"/home/helloworld/React-Guide/suspense.sublime-project",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/Posts/Posts.js",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/NewPost/NewPost.js",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/FullPost/FullPost.js",
-		"/home/helloworld/React-Guide/http/src/http.sublime-project",
-		"/home/helloworld/React-Guide/http/src/index.js",
-		"/home/helloworld/React-Guide/http/src/axios.js",
-		"/home/helloworld/React-Guide/http/README.md",
-		"/home/helloworld/React-Guide/README.md",
-		"/home/helloworld/Work/ttec/temp2.html",
-		"/home/helloworld/React-Guide/http/src/components/Post/Post.js",
-		"/home/helloworld/React-Guide/react-complete-guide/react-complete-guide.sublime-workspace",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/Blog.css",
-		"/home/helloworld/React-Guide/http/src/App.js",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/Posts/Posts.css",
-		"/home/helloworld/React-Guide/http/src/containers/Blog/Blog.js",
-		"/home/helloworld/React-Guide/http/package.json",
-		"/home/helloworld/React-Guide/http/package-lock.json",
-		"/home/helloworld/React-Guide/http/how-to-use.txt",
-		"/home/helloworld/React-Guide/http/src/components/FullPost/FullPost.js",
-		"/home/helloworld/React-Guide/http/src/components/NewPost/NewPost.js",
-		"/home/helloworld/React-Guide/http/node_modules/babel-plugin-transform-react-jsx/lib/index.js",
-		"/home/helloworld/React-Guide/http/src/components/Post/Post.css",
-		"/home/helloworld/burger/src/components/UI/Modal/Modal.js",
-		"/home/helloworld/burger/src/components/UI/Hamburger/Hamburger.js",
-		"/home/helloworld/burger/src/components/Logo/Logo.js",
-		"/home/helloworld/burger/src/App.js",
-		"/home/helloworld/burger/src/components/Navigation/Toolbar/Toolbar.js",
-		"/home/helloworld/burger/src/components/Layout/Layout.js",
-		"/home/helloworld/burger/src/components/Navigation/SideDrawer/SideDrawer.js",
-		"/home/helloworld/burger/src/components/Navigation/SideDrawer/SideDrawer.module.css",
-		"/home/helloworld/burger/src/components/UI/Hamburger/Hamburger.module.css",
-		"/home/helloworld/burger/src/components/Navigation/Toolbar/Toolbar.module.css",
-		"/home/helloworld/burger/src/components/Navigation/NavigationItems/NavigationItems.module.css",
-		"/home/helloworld/burger/src/components/Logo/Logo.module.css",
-		"/home/helloworld/burger/src/components/Navigation/NavigationItems/NavigationItem/NavigationItem.module.css",
-		"/home/helloworld/burger/src/containers/BurgerBuilder/BurgerBuilder.js",
-		"/home/helloworld/burger/src/components/Navigation/NavigationItems/NavigationItem/NavigationItem.js",
-		"/home/helloworld/burger/src/components/Navigation/NavigationItems/NavigationItems.js",
-		"/home/helloworld/burger/src/components/Layout/Layout.module.css",
-		"/home/helloworld/burger/src/components/Navigation/Toolbar/Toolbar.css",
-		"/home/helloworld/burger/src/components/UI/Button/Button.module.css",
-		"/home/helloworld/burger/src/components/UI/Button/Button.js",
-		"/home/helloworld/burger/src/components/Burger/OrderSummary/OrderSummary.js",
-		"/home/helloworld/burger/src/components/UI/Backdrop/Backdrop.js",
-		"/home/helloworld/burger/src/components/UI/Backdrop/Backdrop.module.css",
-		"/home/helloworld/burger/src/components/Burger/BuildControls/BuildControls.js",
-		"/home/helloworld/burger/src/components/Burger/Burger.js",
-		"/home/helloworld/burger/src/components/UI/Modal/Modal.module.css",
-		"/home/helloworld/burger/src/components/Burger/BuildControls/BuildControl/BuildControl.js",
-		"/home/helloworld/burger/src/components/Burger/BuildControls/BuildControls.module.css",
-		"/home/helloworld/burger/src/context/ingredients-context.js",
-		"/home/helloworld/burger/src/context/aux-context.js",
-		"/home/helloworld/burger/src/components/Burger/BuildControls/BuildControl/BuildControl.module.css",
-		"/home/helloworld/burger/src/components/Burger/BurgerIngredient/BurgerIngredient.js",
-		"/home/helloworld/burger/src/components/Burger/Burger.module.css",
-		"/home/helloworld/.config/sublime-text-3/Packages/User/React:Functional Component.sublime-snippet",
-		"/home/helloworld/burger/src/components/Burger/BurgerIngredient/BurgerIngredient.module.css",
-		"/home/helloworld/.config/sublime-text-3/Packages/Emmet/Emmet.sublime-settings",
-		"/home/helloworld/.config/sublime-text-3/Packages/User/Emmet.sublime-settings",
-		"/home/helloworld/burger/src/index.css",
-		"/home/helloworld/burger/public/index.html",
-		"/home/helloworld/burger/src/hoc/Aux.js",
-		"/home/helloworld/burger/src/App.css",
-		"/home/helloworld/burger/burger.sublime-project",
+		"/home/helloworld/cookandeat/src/index.css",
+		"/home/helloworld/cookandeat/public/index.html",
+		"/home/helloworld/cookandeat/cookandeat.sublime-project",
+		"/home/helloworld/React-Guide/react-complete-guide/src/AppHook.js",
+		"/home/helloworld/React-Guide/react-complete-guide/src/components/Cockpit/Cockpit.js",
+		"/home/helloworld/React-Guide/react-complete-guide/src/components/Persons/Persons.js",
+		"/home/helloworld/burger/.editorconfig",
 		"/home/helloworld/React-Guide/react-complete-guide/src/components/Persons/Person/Person.js",
 		"/home/helloworld/React-Guide/react-complete-guide/src/context/auth-context.js",
 		"/home/helloworld/React-Guide/react-complete-guide/src/hoc/aux.js",
-		"/home/helloworld/React-Guide/react-complete-guide/src/components/Cockpit/Cockpit.js",
-		"/home/helloworld/React-Guide/react-complete-guide/src/components/Persons/Persons.js",
 		"/home/helloworld/React-Guide/react-complete-guide/src/hoc/WithClass.js",
 		"/home/helloworld/React-Guide/react-complete-guide/src/containers/App.js",
 		"/home/helloworld/React-Guide/react-complete-guide/src/index.js",
@@ -650,7 +389,6 @@
 		"/home/helloworld/React-Guide/react-complete-guide/public/index.html",
 		"/home/helloworld/React-Guide/react-complete-guide/src/Test.css",
 		"/home/helloworld/React-Guide/react-complete-guide/src/Test.js",
-		"/home/helloworld/React-Guide/react-complete-guide/src/AppHook.js",
 		"/home/helloworld/React-Guide/react-complete-guide/README.md",
 		"/home/helloworld/React-Guide/react-complete-guide/react-complete-guide.sublime-project",
 		"/home/helloworld/React-Guide/react-complete-guide.sublime-project",
@@ -691,7 +429,68 @@
 		"/home/helloworld/Work/rent/build/tariff.html",
 		"/home/helloworld/Work/rent/src/js/utils/selectize.scss",
 		"/home/helloworld/Work/rent/src/blocks/calc-rent/calc-rent.scss",
-		"/home/helloworld/Work/rent/package.json"
+		"/home/helloworld/Work/rent/package.json",
+		"/home/helloworld/Work/rent/src/blocks/page-tariff/page-tariff.scss",
+		"/home/helloworld/Work/rent/src/blocks/terms-row/terms-row.scss",
+		"/home/helloworld/Work/rent/src/blocks/order/order.js",
+		"/home/helloworld/Work/nicefitness/src/blocks/news/news.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/mobile/mobile.scss",
+		"/home/helloworld/Work/nicefitness/src/pages/service.pug",
+		"/home/helloworld/Work/nicefitness/src/blocks/page-card/page-card.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/features/features.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/social-section/social-section.scss",
+		"/home/helloworld/Work/nicefitness/src/scss/mixins/text-mixins.scss",
+		"/home/helloworld/Work/nicefitness/src/scss/mixins/grid-mixins.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/tabs/tabs.pug",
+		"/home/helloworld/Work/nicefitness/src/blocks/tabs/tabs.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/news/news.pug",
+		"/home/helloworld/Work/rent/src/js/contacts.js",
+		"/home/helloworld/Work/rent/src/blocks/social/social.pug",
+		"/home/helloworld/Work/rent/src/blocks/contacts-info/contacts-info.pug",
+		"/home/helloworld/Work/rent/src/blocks/contacts-info/contacts-info.scss",
+		"/home/helloworld/Work/rent/src/blocks/map-nav/map-nav.scss",
+		"/home/helloworld/Work/rent/src/blocks/page-contacts/page-contacts.scss",
+		"/home/helloworld/Work/rent/src/blocks/page-footer/page-footer.pug",
+		"/home/helloworld/Work/rent/src/blocks/important/important.pug",
+		"/home/helloworld/Work/rent/src/blocks/info/info.pug",
+		"/home/helloworld/Work/rent/src/blocks/technical/technical.pug",
+		"/home/helloworld/Work/nicefitness/src/scss/test.scss",
+		"/home/helloworld/Work/nicefitness/build/index.html",
+		"/home/helloworld/Work/rent/src/blocks/form-messages/form-messages.pug",
+		"/home/helloworld/Work/rent/src/blocks/reviews-all/reviews-all.pug",
+		"/home/helloworld/Work/rent/src/blocks/review/review.pug",
+		"/home/helloworld/Work/rent/src/blocks/main-slider/main-slider.js",
+		"/home/helloworld/Work/rent/src/blocks/map-nav/map-nav.pug",
+		"/home/helloworld/Work/rent/src/blocks/map-nav/map-nav.js",
+		"/home/helloworld/Work/rent/src/pages/contacts.pug",
+		"/home/helloworld/Work/rent/src/pages/contacts.js",
+		"/home/helloworld/Work/rent/src/pages/park.pug",
+		"/home/helloworld/Work/rent/src/blocks/filter/filter.js",
+		"/home/helloworld/Work/rent/src/js/submit_form.js",
+		"/home/helloworld/Work/rent/node_modules/async/filter.js",
+		"/home/helloworld/Work/rent/src/js/park.js",
+		"/home/helloworld/Work/nicefitness/src/blocks/page/page.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/info/info.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/feedback/feedback.scss",
+		"/home/helloworld/Work/nicefitness/src/pages/article.pug",
+		"/home/helloworld/Work/nicefitness/src/blocks/article/article.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/article-slider/article-slider.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/caption-medium/caption-medium.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/sign-up/sign-up.pug",
+		"/home/helloworld/Work/nicefitness/src/pages/news.pug",
+		"/home/helloworld/Work/nicefitness/src/pages/services.pug",
+		"/home/helloworld/Work/nicefitness/src/pages/card.pug",
+		"/home/helloworld/Work/nicefitness/src/pages/schedule.pug",
+		"/home/helloworld/Work/nicefitness/src/blocks/card/card.pug",
+		"/home/helloworld/Work/nicefitness/src/pages/main.pug",
+		"/home/helloworld/Work/nicefitness/src/pages/about.pug",
+		"/home/helloworld/Work/nicefitness/src/blocks/info/info.pug",
+		"/home/helloworld/Work/nicefitness/src/scss/variables.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/social-widget/social-widget.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/article-slider/article-slider.js",
+		"/home/helloworld/Work/nicefitness/src/blocks/pagination/pagination.scss",
+		"/home/helloworld/Work/nicefitness/src/blocks/article/article.pug",
+		"/home/helloworld/Work/nicefitness/src/blocks/social-widget/social-widget.pug"
 	],
 	"find":
 	{
@@ -726,16 +525,134 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "routing-react-suspense/routing--react-suspense-start/src/index.js",
+					"file": "src/axios.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 139,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								108,
+								108
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										108,
+										109
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"region.greenish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										70,
+										71
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/containers/Blog/Posts/Posts.js",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 170,
+						"buffer_size": 2665,
 						"regions":
 						{
 						},
@@ -822,7 +739,127 @@
 								"bh_square_close",
 								"bh_square_content"
 							],
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "untitled.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								114,
+								114
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										113,
+										114
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										66,
+										67
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -867,7 +904,7 @@
 	"menu_visible": true,
 	"output.Terminus":
 	{
-		"height": 220.0
+		"height": 238.0
 	},
 	"output.exec":
 	{
@@ -883,10 +920,10 @@
 	},
 	"output.nodejs":
 	{
-		"height": 134.0
+		"height": 241.0
 	},
 	"pinned_build_system": "",
-	"project": "suspense.sublime-project",
+	"project": "untitled.sublime-project",
 	"replace":
 	{
 		"height": 50.0
@@ -898,46 +935,6 @@
 		"last_filter": "",
 		"selected_items":
 		[
-			[
-				"post.js",
-				"src/components/Post/Post.js"
-			],
-			[
-				"buildcont",
-				"src/components/Burger/BuildControls/BuildControls.js"
-			],
-			[
-				"Logo.js",
-				"src/components/Logo/Logo.js"
-			],
-			[
-				"hambur",
-				"src/components/UI/Hamburger/Hamburger.js"
-			],
-			[
-				"ordersu",
-				"src/components/Burger/OrderSummary/OrderSummary.js"
-			],
-			[
-				"sided",
-				"src/components/Navigation/SideDrawer/SideDrawer.module.css"
-			],
-			[
-				"logo.mo",
-				"src/components/Logo/Logo.module.css"
-			],
-			[
-				"toolbar",
-				"src/components/Navigation/Toolbar/Toolbar.module.css"
-			],
-			[
-				"toolbar.s",
-				"src/components/Navigation/Toolbar/Toolbar.module.css"
-			],
-			[
-				"side",
-				"src/components/Navigation/SideDrawer/SideDrawer.module.css"
-			],
 			[
 				"app.js",
 				"src/containers/App.js"
@@ -1409,6 +1406,46 @@
 			[
 				"main.pug",
 				"src/pages/main.pug"
+			],
+			[
+				"article",
+				"src/blocks/article/article.pug"
+			],
+			[
+				"social.",
+				"src/blocks/social/social.pug"
+			],
+			[
+				"contacts",
+				"src/blocks/contacts/contacts.pug"
+			],
+			[
+				"main-slider.js",
+				"src/blocks/main-slider/main-slider.js"
+			],
+			[
+				"article-slider.s",
+				"src/blocks/article-slider/article-slider.scss"
+			],
+			[
+				"article-slider.js",
+				"src/blocks/article-slider/article-slider.js"
+			],
+			[
+				"main-slider.pug",
+				"src/blocks/main-slider/main-slider.pug"
+			],
+			[
+				"main-slid",
+				"src/blocks/main-slider/main-slider.js"
+			],
+			[
+				"article-s",
+				"src/blocks/article-slider/article-slider.scss"
+			],
+			[
+				"main-slider.",
+				"src/blocks/main-slider/main-slider.pug"
 			]
 		],
 		"width": 0.0
@@ -1439,7 +1476,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 360.0,
+	"side_bar_width": 393.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

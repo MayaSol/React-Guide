@@ -15,7 +15,8 @@ class FullPost extends Component {
     }
 
     loadPost = () => {
-        if (this.props.match.params.postId > 0 && (!this.state.loadedPost || this.state.loadedPost.id !== this.props.match.params.postId)) {
+        console.log('loadPost');
+        if (this.props.match.params.postId > 0 && (!this.state.loadedPost || +this.state.loadedPost.id !== +this.props.match.params.postId)) {
             console.log('Post loading 2 ...');
             const post = axios.get('/posts/' + this.props.match.params.postId)
                 .then(response => {

@@ -1,0 +1,11 @@
+{
+	"folders":
+	[
+		{
+			"path": "src"
+		}
+	],
+	"syntax_override": {
+		"\\.js$": ["Babel", "JavaScript (Babel)"]
+	}
+}

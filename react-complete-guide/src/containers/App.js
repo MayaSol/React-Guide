@@ -7,7 +7,6 @@ import withClass from '../hoc/WithClass';
 import Aux from '../hoc/aux';
 import AuthContext from '../context/auth-context.js';
 
-
 class App extends Component {
   constructor(props) {
     super(props);

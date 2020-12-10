@@ -27,22 +27,22 @@ class Posts extends Component {
           method: "get",
           url: "posts",
         })
-            .then(response => {
-            	console.log(response);
-                const posts = response.data.slice(0,4);
-                const updatedPosts = posts.map(post => {
-                    return {
-                        ...post,
-                        author: 'Max'
-                    }
-                })
-                this.setState({posts: updatedPosts});
+        .then(response => {
+        	console.log(response);
+            const posts = response.data.slice(0,4);
+            const updatedPosts = posts.map(post => {
+                return {
+                    ...post,
+                    author: 'Max'
+                }
             })
-            .catch(error => {
-                console.log('componentDidMount error: ');
-                console.log(error);
-                this.setState({error: true});
-            })
+            this.setState({posts: updatedPosts});
+        })
+        .catch(error => {
+            console.log('componentDidMount error: ');
+            // console.log(error);
+            // this.setState({error: true});
+        })
     }
 
 	render() {

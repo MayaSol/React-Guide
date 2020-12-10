@@ -6,12 +6,12 @@ import Blog from './containers/Blog/Blog';
 class App extends Component {
   render() {
     return (
-    // <BrowserRouter basename='/myapp'>
-    <BrowserRouter>
-      <div className="App">
-        <Blog />
-      </div>
-    </BrowserRouter>
+      // <BrowserRouter basename='/myapp'>
+      <BrowserRouter>
+        <div className="App">
+          <Blog />
+        </div>
+      </BrowserRouter>
     );
   }
 }
